@@ -1,16 +1,25 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const userSchema = new Schema({
-    firstName: {
+const workshopSchema = new Schema({
+    workshopName: {
         type: String,
         required: true
     },
-    lastName: {
+    instructor: {
         type: String,
         required: true
     },
-    userName: {
+    price: {
+        type: Number,
+        required: true,
+
+    },
+    dateAndTime: {
+        type: String,
+        required: true
+    },
+    location: {
         type: String,
         required: true
     },
@@ -19,26 +28,18 @@ const userSchema = new Schema({
         filename: String,
 
     },
-    email: {
-        type: String,
-        required: true,
-        unique: true,
-        lowercase: true,
-    },
-    password: {
-        type: String,
-        required: true,
-    },
     socials: {
         instagram: String,
         website: String
 
     }
+
 });
 
-
-
-const User = mongoose.model('User', userSchema);
+const Workshop = mongoose.model('Workshop', workshopSchema);
 
 // Optional- only if needed elsewhere
-module.exports = User;
+module.exports = Workshop;
+
+
+
