@@ -1,21 +1,26 @@
+import './App.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import './App.css'
 import Navbar from '../Components/Navbar/navbar';
+import Home from './pages/Home';
 import AboutUs from './pages/AboutUs';
 import Classes from './pages/Classes';
 import OurArtists from './pages/OurArtists';
 import Shop from './pages/Shop';
 import Events from './pages/Events';
 import Contact from './pages/Contact';
+import RegisterForm from '../Components/RegisterForm/RegisterForm';
+
 
 
 function App() {
 
+  const path = window.location.pathname;
+
   let component
   switch (window.location.pathname) {
-    case "/":
-      component = null
+    case "/home":
+      component = <Home />
       break
     case "/about":
       component = <AboutUs />
@@ -35,20 +40,33 @@ function App() {
     case "/events":
       component = <Events />
       break
-
+    case "/create-user":
+      component = <RegisterForm />
+      break
+    default:
+    case "/":
+      component = null;
+      break;
   };
+
+  const isHome = path === '/home' || path === '/';
+
   return (
     <>
       <Navbar />
-      {component}
-
+      <div className={isHome ? '' : 'section'}>
+        {component}
+      </div>
       <footer className="footer">
         <div className="container">
-          <span>&copy; <script>document.write(new Date().getFullYear())</script> The Community Ceramics Studio Co-op</span>
+          <span>
+            &copy; {new Date().getFullYear()} The Community Ceramics Studio Co-op
+          </span>
         </div>
       </footer>
     </>
   );
-}
 
+}
 export default App;
+
