@@ -8,11 +8,18 @@ const connectDB = require('./config/dbConn')
 const port = process.env.PORT || 8080;
 const User = require('./Models/User');
 const Workshop = require('./Models/Workshop');
+const bodyParser = require('body-parser');
 
 
 // connect to mongoDB
-
+console.log("1")
 connectDB();
+console.log("2")
+
+
+// parse application/json
+app.use(bodyParser.json())
+
 
 // app.get('/', (req, res) => {
 //     console.log('Here')

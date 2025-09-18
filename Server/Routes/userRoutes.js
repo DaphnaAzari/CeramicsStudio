@@ -2,20 +2,14 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', (req, res) => {
+    console.log('params', req.params);
     res.send('All artists!')
 })
 router.post('/', (req, res) => {
+    console.log('req.body :', req.body)
     res.send('Creating a new artist page!')
-})
-router.get('/:id', (req, res) => {
-    res.send('Viewing a specific artist')
-})
-router.get('/:id/edit', (req, res) => {
-    res.send('Editing an artist page')
-})
 
-module.exports = router;
-
+})
 // const makeUser = async () => {
 //     const u = new User({
 //         firstName: 'Daphna',
@@ -28,3 +22,14 @@ module.exports = router;
 //     console.log(res)
 // }
 // makeUser();
+
+router.get('/:id', (req, res) => {
+    console.log('params', req.params);
+    res.send('Viewing a specific artist')
+})
+router.get('/:id/edit', (req, res) => {
+    res.send('Editing an artist page')
+})
+
+module.exports = router;
+
