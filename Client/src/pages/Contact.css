@@ -1,9 +1,3 @@
-.cancellations {
-    font-style: italic;
-    font-size: 0.7rem;
-    color: red;
-}
-
 @media (max-width: 775px) {
 
     .container {
@@ -12,18 +6,12 @@
         font-size: 0.5rem;
     }
 
-    .classes h1 {
+    .contact h1 {
         font-size: 2rem;
     }
 
-    .classes p {
+    .contact p {
         font-size: 0.8rem;
-    }
-
-    .classes p.cancellations {
-        font-style: italic;
-        font-size: 0.5rem;
-        color: red;
     }
 }
 
@@ -35,18 +23,11 @@
         font-size: 1rem;
     }
 
-    .classes h1 {
+    .contact h1 {
         font-size: 2rem;
     }
 
-    .classes p {
+    .contact p {
         font-size: 0.8rem;
-
-    }
-
-    .classes p.cancellations {
-        font-style: italic;
-        font-size: 0.5rem;
-        color: red;
     }
 }

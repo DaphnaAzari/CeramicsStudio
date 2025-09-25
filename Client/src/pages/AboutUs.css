@@ -1,8 +1,20 @@
-.cancellations {
-    font-style: italic;
-    font-size: 0.7rem;
-    color: red;
-}
+/* @media (max-width: 768px) {
+    .section {
+        padding: 30px 15px;
+        margin: 20px auto;
+        width: 95%;
+    }
+
+    .section h2 {
+        font-size: 0.5rem;
+    }
+
+    .section p {
+        font-size: 1rem;
+    }
+
+
+} */
 
 @media (max-width: 775px) {
 
@@ -12,18 +24,12 @@
         font-size: 0.5rem;
     }
 
-    .classes h1 {
+    .about h1 {
         font-size: 2rem;
     }
 
-    .classes p {
+    .about p {
         font-size: 0.8rem;
-    }
-
-    .classes p.cancellations {
-        font-style: italic;
-        font-size: 0.5rem;
-        color: red;
     }
 }
 
@@ -35,18 +41,11 @@
         font-size: 1rem;
     }
 
-    .classes h1 {
+    .about h1 {
         font-size: 2rem;
     }
 
-    .classes p {
+    .about p {
         font-size: 0.8rem;
-
-    }
-
-    .classes p.cancellations {
-        font-style: italic;
-        font-size: 0.5rem;
-        color: red;
     }
 }

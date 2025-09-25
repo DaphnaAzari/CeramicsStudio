@@ -1,0 +1,70 @@
+.shop p {
+    font-style: italic;
+
+}
+
+
+@media (max-width: 775px) {
+
+    .container {
+        width: 100%;
+        margin: 0 auto;
+        font-size: 0.5rem;
+    }
+
+    .shop h1 {
+        font-size: 2rem;
+    }
+
+
+    .shop p .opener {
+        font-style: italic;
+        font-size: 0.8rem;
+    }
+
+    .shopCategories h2 {
+        color: cadetblue;
+        margin-bottom: 15px;
+        text-align: center;
+        font-size: 1.2rem;
+    }
+
+    .shopCategories p {
+        font-size: 0.8rem;
+
+    }
+}
+
+
+
+@media (max-width: 768px) {
+
+    .container {
+        width: 100%;
+        margin: 0 auto;
+        font-size: 1rem;
+    }
+
+    .shop h1 {
+        font-size: 2rem;
+    }
+
+
+
+    .shop p .opener {
+        font-style: italic;
+        font-size: 0.8rem;
+    }
+
+    .shopCategories h2 {
+        color: cadetblue;
+        margin-bottom: 15px;
+        text-align: center;
+        font-size: 1.2rem;
+    }
+
+    .shopCategories p {
+        font-size: 0.8rem;
+
+    }
+}
