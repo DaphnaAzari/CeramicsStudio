@@ -1,5 +1,8 @@
 import './App.css';
 import { useEffect, useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+//get the current URL path or location
 import axios from 'axios';
 import Navbar from '../Components/Navbar/navbar';
 import Home from './pages/Home';
@@ -10,52 +13,29 @@ import Shop from './pages/Shop';
 import Events from './pages/Events';
 import Contact from './pages/Contact';
 import RegisterForm from '../Components/RegisterForm/RegisterForm';
-
+import UserProfile from '../Components/UserProfile/UserProfile';
 
 
 function App() {
-
-  const path = window.location.pathname;
-
-  let component
-  switch (window.location.pathname) {
-    case "/home":
-      component = <Home />
-      break
-    case "/about":
-      component = <AboutUs />
-      break
-    case "/classes":
-      component = <Classes />
-      break
-    case "/artists":
-      component = <OurArtists />
-      break
-    case "/shop":
-      component = <Shop />
-      break
-    case "/contact":
-      component = <Contact />
-      break
-    case "/events":
-      component = <Events />
-      break
-    case "/create-user":
-      component = <RegisterForm />
-      break
-    default:
-    case "/":
-      component = null;
-      break;
-  };
-
-  const isHome = path === '/home' || path === '/';
+  const location = useLocation();
+  const isHome = location.pathname === '/home' || location.pathname === '/';
 
   return (
     <>
       <Navbar />
       <div className={isHome ? '' : 'section'}>
-        {component}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="/classes" element={<Classes />} />
+          <Route path="/artists" element={<OurArtists />} />
+          <Route path="/shop" element={<Shop />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/events" element={<Events />} />
+          <Route path="/create-user" element={<RegisterForm />} />
+          <Route path="/user/:id" element={<UserProfile />} />
+        </Routes>
       </div>
       <footer className="footer">
         <div className="container">
@@ -66,7 +46,6 @@ function App() {
       </footer>
     </>
   );
-
 }
-export default App;
 
+export default App;

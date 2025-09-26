@@ -15,6 +15,10 @@ router.get('/:id/edit', (req, res) => {
     res.send('Editing a class or workshop!')
 })
 
+router.delete('/:id', (req, res) => {
+    res.send('Deleting a workshop!')
+})
+
 module.exports = router;
 
 // const makeWorkshop = async () => {

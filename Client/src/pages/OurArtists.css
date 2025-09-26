@@ -80,3 +80,44 @@
     }
 
 }
+
+@media (max-width: 375px) {
+
+    .container {
+        width: 100%;
+        margin: 0 auto;
+        font-size: 1rem;
+    }
+
+    .artists h1 {
+        font-size: 2rem;
+    }
+
+    .artists p {
+        font-size: 0.8rem;
+
+    }
+
+    .artistsFlex {
+        display: flex;
+        align-items: center;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+
+    .artistName {
+        font-size: 30px;
+        color: darkslategrey;
+    }
+
+    .artistdiv {
+        border: 4px solid black;
+        margin-bottom: 20px;
+        border-radius: 25px;
+        padding: 20px;
+        width: 100%;
+        height: 100%;
+    }
+
+}

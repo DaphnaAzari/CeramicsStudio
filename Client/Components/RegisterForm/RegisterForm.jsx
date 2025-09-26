@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom"; // this is inorder to navigate to different pages after
+
 import axios from 'axios';
 import '../../src/App.css';
 import './RegisterForm.css';
@@ -16,6 +18,9 @@ export default function RegisterForm() {
         website: ''
     });
 
+    //intiallizing the navigation:
+    const navigate = useNavigate();
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prevData => ({
@@ -25,13 +30,31 @@ export default function RegisterForm() {
     };
 
     const submitForm = async (e) => {
-        e.preventDefault()
-        console.log('Submitted Formdata:', formData)
-        await createUser(formData)
-        console.log("after the create")
+        e.preventDefault();
+        console.log('Submitted Formdata:', formData);
 
-    }
+        try {
+            const createdUser = await createUser({
+                firstName: formData.firstName,
+                lastName: formData.lastName,
+                userName: formData.userName,
+                email: formData.email,
+                password: formData.password,
+                socials: {
+                    instagram: formData.instagram,
+                    website: formData.website
+                }
+            });
 
+            console.log("Created user:", createdUser);
+            // Navigate to profile page
+            navigate(`/user/${createdUser._id}`);
+        } catch (err) {
+            console.error("Error creating user:", err);
+            alert("Error creating user!");
+
+        }
+    };
 
     return (
         <div className="register-form">
@@ -88,6 +111,7 @@ export default function RegisterForm() {
                             <label className="label">Password:</label>
                             <input
                                 name="password"
+                                type="password"
                                 placeholder="Add your password"
                                 value={formData.password}
                                 onChange={handleChange}

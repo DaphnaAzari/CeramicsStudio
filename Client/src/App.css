@@ -48,17 +48,16 @@ body::before {
 }
 
 
-.section {
+/* .section {
   background-color: rgba(255, 255, 255, 0.85);
-  /* light background  */
-  padding: 40px 20px;
-  margin: 40px auto;
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  width: 700px;
-  height: 700px;
-  text-align: center;
-}
+padding: 40px 20px;
+margin: 40px auto;
+border-radius: 10px;
+box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+width: 700px;
+height: 700px;
+text-align: center;
+} */
 
 .section {
   background-color: rgba(255, 255, 255, 0.85);
@@ -70,6 +69,7 @@ body::before {
   width: 100%;
   text-align: center;
   box-sizing: border-box;
+  display: flex;
 }
 
 section h2 {
@@ -161,8 +161,11 @@ h2 {
     position: relative;
   }
 
+
+
   .section h2 {
-    font-size: 2px;
+    font-size: 24px;
+    color: darkslategrey;
   }
 
   .footer {

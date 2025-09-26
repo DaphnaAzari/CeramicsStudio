@@ -10,7 +10,18 @@ export default function Events() {
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea mollitia nulla consectetur perferendis explicabo quibusdam ducimus suscipit aperiam est, eius consequuntur libero architecto ipsa, voluptatibus voluptas asperiores, placeat optio. Magni?
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione aut odit rem ipsa nobis eveniet quae a fugit nisi amet, asperiores harum voluptatem accusantium odio nostrum explicabo, blanditiis vitae. Est?
                 </p>
+
+
+                <div className="eventFlex">
+                    <div className="inviteDiv">
+                        <h2>Halloween Party & Sale</h2>
+                        <p><b> Please Joint us at the studio on Friday 31st Oct 2025 from 5pm - 9pm!</b></p>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit laboriosam nihil vero adipisci labore, iure quidem blanditiis, molestiae eum, quo obcaecati omnis sit voluptas tempora odit! Reprehenderit, tempora? Amet, nesciunt!</p>
+                    </div>
+                </div>
+
             </section>
+
         </div>
     )
 }
