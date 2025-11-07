@@ -1,4 +1,4 @@
-.artistsFlex {
+/* .artistsFlex {
     display: flex;
     align-items: center;
     margin-left: 20px;
@@ -15,7 +15,7 @@
     margin-bottom: 20px;
     border-radius: 25px;
     padding: 20px;
-    width: 1000px;
+    width: 100px;
     height: 300px;
 }
 
@@ -57,17 +57,16 @@
         padding: 20px;
         width: 100%;
         height: 100%;
-    }
+    } */
 
 
-}
 
-@media (max-width: 768px) {
+/* @media (max-width: 775px) {
 
     .container {
         width: 100%;
         margin: 0 auto;
-        font-size: 1rem;
+        font-size: 0.5rem;
     }
 
     .artists h1 {
@@ -76,48 +75,185 @@
 
     .artists p {
         font-size: 0.8rem;
-
     }
-
 }
 
-@media (max-width: 375px) {
+@media (max-width: 1288px) {
 
-    .container {
-        width: 100%;
-        margin: 0 auto;
-        font-size: 1rem;
+    .artistName {
+        font-size: 20px;
+        color: darkslategrey;
     }
 
-    .artists h1 {
-        font-size: 2rem;
-    }
-
-    .artists p {
-        font-size: 0.8rem;
-
+    .artistdiv {
+        border: 2px solid black;
+        margin-bottom: 10px;
+        border-radius: 15px;
+        padding: 10px;
+        width: 1000px;
+        height: 300px;
     }
 
     .artistsFlex {
         display: flex;
         align-items: center;
-        margin-left: 5px;
-        margin-right: 5px;
+        margin-left: 20px;
+
+
     }
 
+    .container {
+        width: 80%;
+        margin: 0 auto;
+        font-size: 0.7rem;
+    }
 
+    .about h1 {
+        font-size: 1rem;
+    }
+
+    .artists p {
+        font-size: 0.8rem;
+    }
+} */
+
+.artistsFlex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: 10px 0 20px 0;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.artistName {
+    font-size: 2rem;
+    color: darkslategrey;
+    margin-bottom: 10px;
+}
+
+.artistdiv {
+    border: 4px solid black;
+    border-radius: 25px;
+    padding: 20px;
+    width: 100%;
+    max-width: 800px;
+    box-sizing: border-box;
+    /* background-color: white; */
+}
+
+.artistsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.artistCard {
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+.artistImage {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.socials p {
+    margin: 5px 0;
+    font-size: 0.9em;
+}
+
+.artistsFlex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.artistdiv {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    padding: 15px;
+    width: 220px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.artist-image img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.artistName {
+    font-size: 1.2rem;
+    margin: 5px 0;
+}
+
+.artistUsername {
+    color: gray;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+.artistSocials p {
+    font-size: 0.85rem;
+    margin: 3px 0;
+}
+
+/* responbsive */
+
+@media (max-width: 1024px) {
     .artistName {
-        font-size: 30px;
-        color: darkslategrey;
+        font-size: 1.5rem;
     }
 
     .artistdiv {
-        border: 4px solid black;
-        margin-bottom: 20px;
-        border-radius: 25px;
-        padding: 20px;
-        width: 100%;
-        height: 100%;
+        padding: 15px;
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 768px) {
+    .artistName {
+        font-size: 1.2rem;
     }
 
+    .artistdiv {
+        border-width: 2px;
+        border-radius: 15px;
+        padding: 10px;
+    }
+
+    .artists p {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .artistName {
+        font-size: 1rem;
+    }
+
+    .artistdiv {
+        padding: 10px;
+    }
+
+    .artists h1 {
+        font-size: 1.5rem;
+    }
+
+    .artists p {
+        font-size: 0.8rem;
+    }
 }

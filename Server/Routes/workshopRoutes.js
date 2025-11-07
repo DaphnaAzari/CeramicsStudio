@@ -1,23 +1,63 @@
 const express = require('express');
 // to create a new router object:
 const router = express.Router();
-// to add this to the router
-router.get('/', (req, res) => {
-    res.send('All classes!')
-})
-router.post('/', (req, res) => {
-    res.send('Creating a new class or workshop!')
-})
-router.get('/:id', (req, res) => {
-    res.send('Viewing a specific class or workshop!')
-})
-router.get('/:id/edit', (req, res) => {
-    res.send('Editing a class or workshop!')
-})
+//NEW to import my model:
+const Workshop = require('../Models/Workshop');
 
-router.delete('/:id', (req, res) => {
-    res.send('Deleting a workshop!')
-})
+
+
+
+//NEW updated routes:
+router.get('/', async (req, res) => {
+    try {
+        const workshops = await Workshop.find(); //fetch
+        res.json(workshops); // send data to frontend
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
+router.post('/', async (req, res) => {
+    try {
+        const newWorkshop = new Workshop(req.body);
+        const savedWorkshop = await newWorkshop.save();
+        res.status(201).json(savedWorkshop);
+    } catch (err) {
+        res.status(400).json({ message: err.message });
+    }
+});
+
+router.get('/:id', async (req, res) => {
+    try {
+        const workshop = await Workshop.findById(req.params.id);
+        if (!workshop) return res.status(404).json({ message: 'Workshop not found' });
+        res.json(workshop);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
+
+
+///____________________
+
+// to add this to the router
+// router.get('/', (req, res) => {
+//     res.send('All classes!')
+// })
+// router.post('/', (req, res) => {
+//     res.send('Creating a new class or workshop!')
+// })
+// router.get('/:id', (req, res) => {
+//     res.send('Viewing a specific class or workshop!')
+// })
+// router.get('/:id/edit', (req, res) => {
+//     res.send('Editing a class or workshop!')
+// })
+
+// router.delete('/:id', (req, res) => {
+//     res.send('Deleting a workshop!')
+// })
 
 module.exports = router;
 

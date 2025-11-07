@@ -1,31 +1,48 @@
-@media (max-width: 775px) {
-
-    .container {
-        width: 100%;
-        margin: 0 auto;
-        font-size: 0.5rem;
-    }
-
-    .events h1 {
-        font-size: 2rem;
-    }
-
-    .events p {
-
-        font-size: 0.8rem;
-    }
-
-
+.eventFlex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0 20px 0;
+    padding: 0 10px;
+    box-sizing: border-box;
 }
 
+.inviteDiv {
+    border: 4px solid black;
+    border-radius: 25px;
+    padding: 20px;
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    box-sizing: border-box;
+    /* background-color: white; */
+    margin: 0 auto;
+}
 
+.inviteDiv h2 {
+    font-size: 2rem;
+    color: darkslategrey;
+}
 
-@media (max-width: 768px) {
+.events h1 {
+    font-size: 2.5rem;
+}
 
-    .container {
-        width: 100%;
-        margin: 0 auto;
-        font-size: 1rem;
+.events p {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* responsive */
+
+@media (max-width: 1024px) {
+    .inviteDiv {
+        padding: 15px;
+        max-width: 90%;
+    }
+
+    .inviteDiv h2 {
+        font-size: 1.5rem;
     }
 
     .events h1 {
@@ -33,7 +50,31 @@
     }
 
     .events p {
-        font-size: 0.8rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .eventFlex {
+        padding: 0 5px;
+    }
+
+    .inviteDiv {
+        border-width: 2px;
+        border-radius: 15px;
+        padding: 10px;
+    }
+
+    .inviteDiv h2 {
+        font-size: 1.3rem;
+    }
+
+    .events h1 {
+        font-size: 1.8rem;
+    }
+
+    .events p {
+        font-size: 0.85rem;
     }
 
     .shopCategories h2 {
@@ -44,23 +85,16 @@
     }
 }
 
-.eventFlex {
-    display: flex;
-    align-items: center;
-    margin-left: 20px;
+@media (max-width: 480px) {
+    .inviteDiv h2 {
+        font-size: 1.1rem;
+    }
 
-}
+    .events h1 {
+        font-size: 1.5rem;
+    }
 
-.inviteDiv {
-    border: 4px solid black;
-    margin-bottom: 20px;
-    border-radius: 25px;
-    padding: 20px;
-    width: 1000px;
-    height: 300px;
-}
-
-.inviteDiv h2 {
-    font-size: 30px;
-    color: darkslategrey;
+    .events p {
+        font-size: 0.8rem;
+    }
 }

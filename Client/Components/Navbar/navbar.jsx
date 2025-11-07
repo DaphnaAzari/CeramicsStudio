@@ -1,11 +1,13 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './navbar.css';
 import DensityMediumIcon from '@mui/icons-material/DensityMedium';
 
 
 export default function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
+    const navigate = useNavigate();
+    const token = localStorage.getItem('token');
     const toggleMenu = () => {
         setIsMobileMenuOpen(prev => !prev);
     };
@@ -13,14 +15,20 @@ export default function Navbar() {
     const closeMenu = () => {
         setIsMobileMenuOpen(false);
     };
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        navigate('/login');
+    };
 
+    const handleLogin = () => {
+        navigate('/login');
+    };
     return (
         <nav className="nav">
             <a href="/" className="site-title">The Ceramics Studio Co-op</a>
 
             <button className="menu-toggle" onClick={toggleMenu}>
                 <DensityMediumIcon />
-
             </button>
 
             <ul className={`navMenu ${isMobileMenuOpen ? 'active' : ''}`}>
@@ -30,7 +38,9 @@ export default function Navbar() {
                 <li onClick={closeMenu}><a href="/shop">Shop</a></li>
                 <li onClick={closeMenu}><a href="/events">Events</a></li>
                 <li onClick={closeMenu}><a href="/contact">Contact us</a></li>
-                <li onClick={closeMenu}><a href="/create-user">Register</a></li>
+                {!token && <li onClick={() => { closeMenu(); handleLogin(); }}><a>Login</a></li>}
+                {token && <li onClick={() => { closeMenu(); handleLogout(); }}><a>Logout</a></li>}
+                {!token && <li onClick={closeMenu}><a href="/create-user">Register</a></li>}
             </ul>
         </nav>
     );

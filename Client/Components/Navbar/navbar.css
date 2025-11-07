@@ -53,6 +53,11 @@
     padding: 0;
 }
 
+.navMenu li:last-child {
+    margin-left: auto;
+    /* pushes last items to the right */
+}
+
 .navMenu a {
     color: white;
     text-decoration: none;

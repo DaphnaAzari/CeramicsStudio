@@ -1,48 +1,67 @@
 const express = require('express');
 const router = express.Router();
-const { makeUser, getUserById, updateUser } = require('../controllers/userC')
+const methodOverride = require('method-override');
+const User = require('../Models/User');
+const { makeUser, getUserById, updateUser, loginUser } = require('../controllers/userC');
+const { upload } = require('../config/cloudinary');
+const { protect } = require('../middleware/authMiddleware');
+// const multer = require('multer');
+// const path = require('path');
 
-router.get('/', (req, res) => {
-    console.log('params', req.params);
-    res.send('All artists!')
-})
-// router.post('/', (req, res) => {
-//     console.log('req.body :', req.body)
-//     res.send('Creating a new artist page!')
 
-// })
+router.use(methodOverride('_method'));
 
-// POST: Create user
-router.post('/', makeUser);
-console.log("Creating a new artist page!")
 
-//** */
-// PUT: Edit user profile
-// GET: View user profile
-router.get('/:id', getUserById);
+router.post('/', (req, res) => {
+    // Call multer manually so we can capture its errors
+    upload.single('imageFile')(req, res, async function (err) {
+        if (err) {
+            console.error('Multer/Cloudinary upload error:', err);
+            return res
+                .status(500)
+                .json({ message: 'Upload failed', details: err.message || err.toString() });
+        }
 
-// PUT: Edit user profile
-router.put('/:id', updateUser)
-
-// DELETE: Delete user
-
-router.delete('/:id', (req, res) => {
-    res.send('Deleting an artist page');
+        try {
+            console.log('Multer upload passed, continuing to makeUser');
+            await makeUser(req, res);
+        } catch (controllerError) {
+            console.error(' Error inside makeUser:', controllerError);
+            res
+                .status(500)
+                .json({ message: 'User creation failed', details: controllerError.message });
+        }
+    });
 });
 
 
-// router.get('/:id', (req, res) => {
-//     console.log('params', req.params);
-//     res.send(`Viewing artist with ID: ${req.params.id}`);
-// });
+// LOGIN 
+router.post('/login', loginUser);
 
-// router.get('/:id/edit', (req, res) => {
-//     res.send('Editing an artist page')
-// })
+// GET
+router.get('/:id', protect, getUserById);
 
-// router.delete('/:id', (req, res) => {
-//     res.send('Deleting an artist page')
-// })
+// Edit user profile
+router.put('/:id', protect, updateUser);
+
+//Get all users (Our Artists page)
+
+router.get('/', async (req, res) => {
+    try {
+        const users = await User.find().select('-password');
+        res.status(200).json(users);
+    } catch (err) {
+        console.error('Error fetching users:', err);
+        res.status(500).json({ error: 'Server error' });
+    }
+});
+
+// DELETE
+router.delete('/:id', (req, res) => {
+    console.log(`Deleting user with ID: ${req.params.id}`);
+    res.send(`Deleting artist page with ID ${req.params.id}`);
+});
+
 
 module.exports = router;
 

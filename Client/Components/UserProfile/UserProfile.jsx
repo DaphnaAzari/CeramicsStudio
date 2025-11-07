@@ -2,11 +2,14 @@ import React, { useEffect, useState } from 'react';
 //importing useEfect to  fetch user data when components load
 import { useParams } from 'react-router-dom';
 // useParams lets us grab dynamic values from the URL.
+import { useNavigate } from "react-router-dom";
+//useNavigate lets me redirect users after login/logout/reg
 import getUserById from '../../src/api/getUserById';
 import './UserProfile.css';
 
 export default function UserProfile() {
     const { id } = useParams();
+    const navigate = useNavigate(); // for redirecting after logout
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -31,12 +34,22 @@ export default function UserProfile() {
         fetchUser();
     }, [id]);
 
+
+    const handleLogout = () => {
+        localStorage.removeItem('token'); // clears JWT
+        navigate('/login'); // redirect to login
+    };
+
     if (loading) return <p>Loading...</p>;
     if (error) return <p>{error}</p>;
 
     return (
         <div className="user-profile">
-            <h1>User Profile</h1>
+            <div className="profile-header">
+                <h1>User Profile</h1>
+                <button className="btn-logout" onClick={handleLogout}>Logout</button>
+            </div>
+
             <p className="user-fullname">
                 <span className="label">Full Name:</span> {user.firstName} {user.lastName}
             </p>
@@ -47,6 +60,11 @@ export default function UserProfile() {
                     <p><span className="label">Instagram:</span> {user.socials.instagram}</p>
                     <p><span className="label">Website:</span> {user.socials.website}</p>
                 </>
+            )}
+            {user.image && user.image.url && (
+                <div className="image-preview">
+                    <img src={user.image.url} alt={`${user.userName}'s profile`} />
+                </div>
             )}
         </div>
     );
