@@ -59,8 +59,8 @@ export default function OurArtists() {
                                 <p className="artistUsername">@{artist.userName}</p>
                                 {artist.socials && (
                                     <div className="artistSocials">
-                                        {artist.socials.instagram && <p>Instagram: {artist.socials.instagram}</p>}
-                                        {artist.socials.website && <p>Website: {artist.socials.website}</p>}
+                                        {artist.socials.instagram && <p><b>Instagram:</b> {artist.socials.instagram}</p>}
+                                        {artist.socials.website && <p><b>Website:</b> {artist.socials.website}</p>}
                                     </div>
                                 )}
                             </div>
