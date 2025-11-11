@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './OurArtists.css';
 
@@ -15,6 +16,7 @@ export default function OurArtists() {
 
                 if (Array.isArray(data)) {
                     setArtists(data);
+                    console.log("Fetched artists:", data);
                 } else {
                     setArtists([]);
                     console.error('Data fetched is not an array:', data);
@@ -44,33 +46,71 @@ export default function OurArtists() {
                 <div className="artistsFlex">
                     {artists.length > 0 ? (
                         artists.map(artist => (
-                            <div key={artist._id} className="artistdiv">
-                                {artist.image?.url && (
-                                    <div className="artist-image">
-                                        <img
-                                            src={artist.image.url}
-                                            alt={`${artist.firstName} ${artist.lastName}`}
-                                        />
-                                    </div>
-                                )}
-                                <h2 className="artistName">
+                            < div key={artist._id} className="artistdiv" >
+                                {
+                                    artist.image?.url && (
+                                        <div className="artist-image">
+                                            <img
+                                                src={artist.image.url}
+                                                alt={`${artist.firstName} ${artist.lastName}`}
+                                            />
+                                        </div>
+                                    )
+                                }
+                                {/* <h2 className="artistName">
                                     <b>{artist.firstName} {artist.lastName}</b>
+                                </h2> */}
+
+                                < h2 className="artistName" >
+                                    <Link to={`/user/${artist._id}`}>{artist.userName}</Link>
                                 </h2>
                                 <p className="artistUsername">@{artist.userName}</p>
-                                {artist.socials && (
+                                {/* {artist.socials && (
                                     <div className="artistSocials">
                                         {artist.socials.instagram && <p><b>Instagram:</b> {artist.socials.instagram}</p>}
                                         {artist.socials.website && <p><b>Website:</b> {artist.socials.website}</p>}
+                                    </div> */}
+
+                                {artist.socials && (
+                                    <div className="artistSocials">
+                                        {artist.socials.instagram && (
+                                            <p>
+                                                <b>Instagram:</b>{' '}
+                                                <a
+                                                    href={artist.socials.instagram}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="artist-link"
+                                                >
+                                                    {artist.socials.instagram}
+                                                </a>
+                                            </p>
+                                        )}
+                                        {artist.socials.website && (
+                                            <p>
+                                                <b>Website:</b>{' '}
+                                                <a
+                                                    href={artist.socials.website}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="artist-link"
+                                                >
+                                                    {artist.socials.website}
+                                                </a>
+                                            </p>
+                                        )}
                                     </div>
                                 )}
+                                {/* )} */}
                             </div>
                         ))
                     ) : (
                         <p>No artists found.</p>
-                    )}
-                </div>
-            </section>
-        </div>
+                    )
+                    }
+                </div >
+            </section >
+        </div >
     );
 }
 

@@ -84,7 +84,7 @@ export default function RegisterForm() {
 
             console.log("Created user:", res.data);
 
-            // ✅ Save token for future authenticated requests
+            // Save token for future authenticated requests
             localStorage.setItem('token', res.data.token);
 
             // Navigate to the user's profile page

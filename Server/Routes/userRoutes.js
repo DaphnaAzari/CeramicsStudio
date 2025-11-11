@@ -39,7 +39,9 @@ router.post('/', (req, res) => {
 router.post('/login', loginUser);
 
 // GET
-router.get('/:id', protect, getUserById);
+// router.get('/:id', protect, getUserById);
+
+router.get('/:id', getUserById);
 
 // Edit user profile
 router.put('/:id', protect, updateUser);

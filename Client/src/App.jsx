@@ -1,8 +1,6 @@
 import './App.css';
 import { useEffect, useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
-//get the current URL path or location
+import { Routes, Route, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from '../Components/Navbar/navbar';
 import Home from './pages/Home';
@@ -14,6 +12,7 @@ import Events from './pages/Events';
 import Contact from './pages/Contact';
 import RegisterForm from '../Components/RegisterForm/RegisterForm';
 import UserProfile from '../Components/UserProfile/UserProfile';
+
 
 
 function App() {

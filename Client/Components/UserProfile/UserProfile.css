@@ -7,6 +7,7 @@
     padding: 40px;
     font-size: 1.2rem;
     box-sizing: border-box;
+    text-align: left;
 
 }
 
@@ -45,7 +46,6 @@ h1 {
 
 
 .user-profile a {
-    color: #0000EE;
     text-decoration: none;
     word-break: break-word;
 }
@@ -72,6 +72,13 @@ h1 {
     height: 100%;
     object-fit: cover;
     /* ensures proper cropping */
+}
+
+.btn-logout {
+    background-color: red;
+    color: #333;
+    /* color: #ccc; */
+    text-align: center;
 }
 
 /* responsive*/

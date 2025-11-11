@@ -44,28 +44,32 @@ export default function UserProfile() {
     if (error) return <p>{error}</p>;
 
     return (
-        <div className="user-profile">
-            <div className="profile-header">
-                <h1>User Profile</h1>
-                <button className="btn-logout" onClick={handleLogout}>Logout</button>
-            </div>
+        <div className="entire-div">
+            <div className="user-profile">
+                <div className="profile-header">
+                    <h1>User Profile</h1>
 
-            <p className="user-fullname">
-                <span className="label">Full Name:</span> {user.firstName} {user.lastName}
-            </p>
-            <p><span className="label">Username:</span> {user.userName}</p>
-            <p><span className="label">Email:</span> {user.email}</p>
-            {user.socials && (
-                <>
-                    <p><span className="label">Instagram:</span> {user.socials.instagram}</p>
-                    <p><span className="label">Website:</span> {user.socials.website}</p>
-                </>
-            )}
-            {user.image && user.image.url && (
-                <div className="image-preview">
-                    <img src={user.image.url} alt={`${user.userName}'s profile`} />
                 </div>
-            )}
+                {user.image && user.image.url && (
+                    <div className="image-preview">
+                        <img src={user.image.url} alt={`${user.userName}'s profile`} />
+                    </div>
+                )}
+                <p className="user-fullname">
+                    <span className="label">Full Name:</span> {user.firstName} {user.lastName}
+                </p>
+                <p><span className="label">Username:</span> {user.userName}</p>
+                <p><span className="label">Email:</span> {user.email}</p>
+                {user.socials && (
+                    <>
+                        <p><span className="label">Instagram:</span> {user.socials.instagram}</p>
+                        <p><span className="label">Website:</span> {user.socials.website}</p>
+                    </>
+                )}
+
+
+            </div>
+            <button className="btn-logout" onClick={handleLogout}>Logout</button>
         </div>
     );
 }
