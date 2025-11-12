@@ -21,7 +21,7 @@ export default function LoginForm() {
         setError('');
         try {
             // Sends login request to backend
-            const res = await axios.post('http://localhost:3000/user/login', formData);
+            const res = await axios.post('http://localhost:3000/users/login', formData);
 
             console.log("Login success:", res.data);
 
@@ -63,7 +63,9 @@ export default function LoginForm() {
                 </div>
                 {error && <p className="error">{error}</p>}
 
-                <button type="submit">Login</button>
+                <div className="form-actions">
+                    <button type="submit" className="btn-submit">Login</button>
+                </div>
             </form>
         </div>
     );

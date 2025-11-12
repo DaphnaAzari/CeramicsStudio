@@ -57,12 +57,21 @@
     box-sizing: border-box;
 }
 
-
-/* single field row */
 .form-row.single {
-    justify-content: flex-start;
+    width: 100%;
+    display: flex !important;
+    justify-content: flex-start !important;
 }
 
+.form-row.single .form-group {
+    flex: 1 1 100% !important;
+    min-width: 100% !important;
+    text-align: left !important;
+}
+
+.form-row.single .form-group input {
+    width: 100% !important;
+}
 
 .form-actions {
     text-align: center;
@@ -84,14 +93,6 @@
     background-color: #45a049;
 }
 
-/* .password-hint {
-    display: block;
-    white-space: nowrap;
-    font-size: 0.85rem;
-    color: #666;
-    margin-top: 4px;
-    overflow-x: auto;
-} */
 
 .password-hint {
     display: inline-block;

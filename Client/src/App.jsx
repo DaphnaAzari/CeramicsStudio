@@ -12,6 +12,7 @@ import Events from './pages/Events';
 import Contact from './pages/Contact';
 import RegisterForm from '../Components/RegisterForm/RegisterForm';
 import UserProfile from '../Components/UserProfile/UserProfile';
+import LoginForm from '../Components/LoginForm/LoginForm';
 
 
 
@@ -34,6 +35,7 @@ function App() {
           <Route path="/events" element={<Events />} />
           <Route path="/create-user" element={<RegisterForm />} />
           <Route path="/user/:id" element={<UserProfile />} />
+          <Route path="/login" element={<LoginForm />} />
         </Routes>
       </div>
       <footer className="footer">

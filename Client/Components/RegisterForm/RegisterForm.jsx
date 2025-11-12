@@ -218,7 +218,7 @@ export default function RegisterForm() {
                 </div>
 
                 {/* row4  */}
-                <div className="form-row">
+                {/* <div className="form-row">
                     <div className="form-group">
                         <label className="label">Website:</label>
                         <input
@@ -226,6 +226,18 @@ export default function RegisterForm() {
                             placeholder="Add your website"
                             value={formData.website}
                             onChange={handleChange} />
+                    </div>
+                </div> */}
+
+                <div className="form-row single">
+                    <div className="form-group">
+                        <label className="label">Website:</label>
+                        <input
+                            name="website"
+                            placeholder="Add your website"
+                            value={formData.website}
+                            onChange={handleChange}
+                        />
                     </div>
                 </div>
                 <div className="form-group">
