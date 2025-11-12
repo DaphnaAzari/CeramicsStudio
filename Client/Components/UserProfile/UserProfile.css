@@ -1,49 +1,79 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100dvh;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
 .user-profile {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 10px;
+    justify-content: flex-start;
+    /* This part centers the whole box */
+    max-width: 900px;
     width: 100%;
-    padding: 40px;
+
+    margin: 0 auto;
+    padding: 32px;
     font-size: 1.2rem;
     box-sizing: border-box;
     text-align: left;
-
-}
-
-h1 {
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
-}
-
-.user-fullname {
-    display: flex;
-    flex-wrap: nowrap;
-    font-size: 1.6rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-
-.label {
-    font-weight: bold;
     color: #333;
-    margin-right: 8px;
+}
+
+.profile-header h1 {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+
+.contact-details {
+    border: 2px solid #333;
+    border-radius: 15px;
+    padding: 15px 20px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-sizing: border-box;
+}
+
+.user-profile .contact-details {
+    text-align: left;
+    border: 2px solid #333;
+    border-radius: 15px;
+    padding: 15px 20px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.9);
+
+}
+
+.contact-details p {
+    color: #333;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.contact-details h2 {
+    margin-bottom: 10px;
+    color: #333;
+    text-decoration: none;
+    font-weight: 600;
 }
 
 .user-profile p {
     font-size: 1.1rem;
     margin-bottom: 10px;
     color: #333;
+    text-align: left;
 }
-
-
-.user-profile p b {
-    font-weight: 700;
-    display: inline-block;
-    width: 130px;
-}
-
 
 .user-profile a {
     text-decoration: none;
@@ -56,14 +86,11 @@ h1 {
 
 .image-preview {
     width: 150px;
-    /* square size */
     height: 150px;
-    /* square size */
     border-radius: 10px;
     /* rounded corners */
     overflow: hidden;
-    border: 1px solid #ccc;
-    /* matches form input style */
+    border: 3px solid #333;
     margin-bottom: 15px;
 }
 
@@ -71,14 +98,25 @@ h1 {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* ensures proper cropping */
+
 }
 
-.btn-logout {
-    background-color: red;
-    color: #333;
-    /* color: #ccc; */
-    text-align: center;
+.user-socials a {
+    color: darkslategrey;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease, text-decoration 0.2s ease;
+}
+
+.user-socials a:hover {
+    color: #000;
+    text-decoration: underline;
+}
+
+
+.profile-header h1 {
+    font-size: 2.4rem;
+    margin-bottom: 14px;
 }
 
 /* responsive*/
@@ -123,7 +161,8 @@ h1 {
 
 @media (max-width: 480px) {
     .user-profile {
-        padding: 15 font-size: 0.95rem;
+        padding: 15;
+        font-size: 0.95rem;
     }
 
     .user-fullname {
@@ -143,4 +182,63 @@ h1 {
     h1 {
         font-size: 1.5rem;
     }
+}
+
+/* update: */
+@media (max-width: 375px) {
+    .user-profile {
+        padding: 12px;
+        max-width: calc(100% - 24px);
+    }
+
+    .profile-header h1 {
+        font-size: 1.4rem;
+        margin-bottom: 10px;
+    }
+
+    .image-preview {
+        width: 110px;
+        height: 110px;
+        border-radius: 8px;
+    }
+
+    .contact-details {
+        padding: 12px;
+    }
+}
+
+/* slightly larger phones & tight tablets */
+@media (min-width: 376px) and (max-width: 600px) {
+    .user-profile {
+        padding: 16px;
+        max-width: calc(100% - 32px);
+    }
+
+    .profile-header h1 {
+        font-size: 1.6rem;
+    }
+
+    .image-preview {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+
+@media (min-width: 601px) and (max-width: 1368px) {
+    .user-profile {
+        padding: 24px;
+    }
+
+    .profile-header h1 {
+        font-size: 2rem;
+    }
+}
+
+.user-profile *,
+.contact-details * {
+    box-sizing: border-box;
+    max-width: 100%;
+    word-wrap: break-word;
+    word-break: break-word;
 }

@@ -73,7 +73,7 @@ text-align: center;
 }
 
 section h2 {
-  color: cadetblue;
+  /* color: cadetblue; */
   font-size: 4px;
   margin-bottom: 15px;
 }
@@ -85,9 +85,9 @@ section p {
 }
 
 h2 {
-  color: cadetblue;
+  /* color: cadetblue; */
   margin-bottom: 15px;
-  text-align: center;
+  /* text-align: center; */
   font-size: 30px;
 }
 
@@ -126,14 +126,14 @@ h2 {
 
 
   h2 {
-    color: cadetblue;
+    /* color: cadetblue; */
     margin-bottom: 15px;
-    text-align: center;
-    font-size: 30px;
+    /* text-align: center; */
+    font-size: 40px;
   }
 
   .section h2 {
-    font-size: 12px;
+    font-size: 20px;
   }
 
   .footer {
@@ -165,7 +165,7 @@ h2 {
 
   .section h2 {
     font-size: 24px;
-    color: darkslategrey;
+    /* color: darkslategrey; */
   }
 
   .footer {
@@ -177,7 +177,7 @@ h2 {
   }
 
   h2 {
-    color: cadetblue;
+    /* color: cadetblue; */
     margin-bottom: 15px;
     text-align: center;
     font-size: 30px;

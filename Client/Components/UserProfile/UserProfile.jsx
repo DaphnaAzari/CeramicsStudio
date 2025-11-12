@@ -44,32 +44,85 @@ export default function UserProfile() {
     if (error) return <p>{error}</p>;
 
     return (
-        <div className="entire-div">
-            <div className="user-profile">
-                <div className="profile-header">
-                    <h1>User Profile</h1>
 
-                </div>
-                {user.image && user.image.url && (
-                    <div className="image-preview">
-                        <img src={user.image.url} alt={`${user.userName}'s profile`} />
-                    </div>
-                )}
-                <p className="user-fullname">
-                    <span className="label">Full Name:</span> {user.firstName} {user.lastName}
-                </p>
-                <p><span className="label">Username:</span> {user.userName}</p>
-                <p><span className="label">Email:</span> {user.email}</p>
-                {user.socials && (
-                    <>
-                        <p><span className="label">Instagram:</span> {user.socials.instagram}</p>
-                        <p><span className="label">Website:</span> {user.socials.website}</p>
-                    </>
-                )}
-
+        <div className="user-profile">
+            <div className="profile-header">
+                <h1>{user.userName}</h1>
 
             </div>
-            <button className="btn-logout" onClick={handleLogout}>Logout</button>
+            {user.image && user.image.url && (
+                <div className="image-preview">
+                    <img src={user.image.url} alt={`${user.userName}'s profile`} />
+
+                </div>
+            )}
+            <div className="contact-details">
+                <h2>{user.firstName} {user.lastName}'s Contact Info:</h2>
+
+                <p> {user.email}</p>
+                {/* {user.socials && (
+                    <div className="user-socials">
+                        {user.socials.instagram && (
+                            <p>
+                                <b>Instagram: </b>
+                                <a
+                                    href={user.socials.instagram}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    {user.socials.instagram}
+                                </a>
+                            </p>
+                        )}
+                        {user.socials.website && (
+                            <p>
+                                <b>Website: </b>
+                                <a
+                                    href={user.socials.website}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    {user.socials.website}
+                                </a>
+                            </p>
+                        )}
+                    </div>
+                )} */}
+
+                {user.socials && (
+                    <div className="user-socials">
+                        {user.socials.instagram && (
+                            <p>
+                                <a
+                                    href={user.socials.instagram.startsWith('http')
+                                        ? user.socials.instagram
+                                        : `https://${user.socials.instagram}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    Instagram
+                                </a>
+                            </p>
+                        )}
+
+                        {user.socials.website && (
+                            <p>
+                                <a
+                                    href={user.socials.website.startsWith('http')
+                                        ? user.socials.website
+                                        : `https://${user.socials.website}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    Website
+                                </a>
+                            </p>
+                        )}
+                    </div>
+                )}
+            </div>
+
         </div>
+
     );
 }
