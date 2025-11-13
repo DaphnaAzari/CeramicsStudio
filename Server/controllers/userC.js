@@ -131,19 +131,62 @@ const getUserById = async (req, res) => {
         res.status(500).json({ error: 'Server error' });
     }
 };
+//old version:
+// const updateUser = async (req, res) => {
+//     try {
+//         const updatedUser = await User.findByIdAndUpdate(
+//             req.params.id,
+//             req.body,
+//             { new: true }
+//         ).select('-password');
+
+//         if (!updatedUser) return res.status(404).json({ error: 'User not found' });
+//         res.status(200).json(updatedUser);
+//     } catch (err) {
+//         console.error('Error updating user:', err);
+//         res.status(500).json({ error: 'Server error' });
+//     }
+// };
 
 const updateUser = async (req, res) => {
     try {
+        console.log("Incoming update request for user:", req.params.id);
+        console.log("Body received:", req.body);
+        console.log("File received:", req.file ? req.file.originalname : "No file");
+
+        const updateFields = { ...req.body };
+
+        // If socials is sent as a string (from FormData), parse it
+        if (updateFields.socials && typeof updateFields.socials === "string") {
+            try {
+                updateFields.socials = JSON.parse(updateFields.socials);
+            } catch (err) {
+                console.error("Failed to parse socials JSON:", err.message);
+            }
+        }
+
+        // If a new image was uploaded, include it
+        if (req.file) {
+            updateFields.image = {
+                url: req.file.path || req.file.secure_url,
+                public_id: req.file.filename || req.file.public_id,
+            };
+        }
+
         const updatedUser = await User.findByIdAndUpdate(
             req.params.id,
-            req.body,
+            updateFields,
             { new: true }
         ).select('-password');
 
-        if (!updatedUser) return res.status(404).json({ error: 'User not found' });
+        if (!updatedUser) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        console.log("Updated user:", updatedUser);
         res.status(200).json(updatedUser);
     } catch (err) {
-        console.error('Error updating user:', err);
+        console.error("Error updating user:", err);
         res.status(500).json({ error: 'Server error' });
     }
 };

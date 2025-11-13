@@ -44,7 +44,13 @@ router.post('/login', loginUser);
 router.get('/:id', getUserById);
 
 // Edit user profile
-router.put('/:id', protect, updateUser);
+
+// router.put('/:id', protect, updateUser);
+
+//Updated edit that allows both image + form data to be updated:
+
+router.put('/:id', protect, upload.single('imageFile'), updateUser);
+
 
 //Get all users (Our Artists page)
 
@@ -59,11 +65,32 @@ router.get('/', async (req, res) => {
 });
 
 // DELETE
-router.delete('/:id', (req, res) => {
-    console.log(`Deleting user with ID: ${req.params.id}`);
-    res.send(`Deleting artist page with ID ${req.params.id}`);
-});
+// router.delete('/:id', (req, res) => {
+//     console.log(`Deleting user with ID: ${req.params.id}`);
+//     res.send(`Deleting artist page with ID ${req.params.id}`);
+// });
 
+//updated Delete route:
+router.delete('/:id', protect, async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id);
+
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        // Optional: prevent deleting someone else's account
+        if (req.user.id !== user.id) {
+            return res.status(401).json({ message: 'Not authorized to delete this user' });
+        }
+
+        await user.deleteOne();
+        res.status(200).json({ message: 'User deleted successfully' });
+    } catch (error) {
+        console.error('Error deleting user:', error);
+        res.status(500).json({ message: 'Server error while deleting user' });
+    }
+});
 
 module.exports = router;
 

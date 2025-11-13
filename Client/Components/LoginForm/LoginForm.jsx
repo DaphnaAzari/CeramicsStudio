@@ -17,24 +17,47 @@ export default function LoginForm() {
 
     // handle form submission
     const handleSubmit = async (e) => {
-        e.preventDefault(); // Prevent page reload
+        e.preventDefault();
         setError('');
+
         try {
-            // Sends login request to backend
+            // Send login request to backend
             const res = await axios.post('http://localhost:3000/users/login', formData);
 
             console.log("Login success:", res.data);
 
-            // Save JWT token in storage
+            // Save JWT token and user ID
             localStorage.setItem('token', res.data.token);
+            localStorage.setItem('userId', res.data._id);
 
-            // redirects to user profile page using ID
+            // Redirect to user profile page
             navigate(`/user/${res.data._id}`);
         } catch (err) {
             console.error("Login failed:", err);
             setError(err.response?.data?.message || 'Invalid email or password');
         }
     };
+
+    //older version:
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault(); // Prevent page reload
+    //     setError('');
+    //     try {
+    //         // Sends login request to backend
+    //         const res = await axios.post('http://localhost:3000/users/login', formData);
+
+    //         console.log("Login success:", res.data);
+
+    //         // Save JWT token in storage
+    //         localStorage.setItem('token', res.data.token);
+
+    //         // redirects to user profile page using ID
+    //         navigate(`/user/${res.data._id}`);
+    //     } catch (err) {
+    //         console.error("Login failed:", err);
+    //         setError(err.response?.data?.message || 'Invalid email or password');
+    //     }
+    // };
 
 
     return (

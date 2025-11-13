@@ -13,7 +13,7 @@ import Contact from './pages/Contact';
 import RegisterForm from '../Components/RegisterForm/RegisterForm';
 import UserProfile from '../Components/UserProfile/UserProfile';
 import LoginForm from '../Components/LoginForm/LoginForm';
-
+import EditUser from '../Components/EditUser/EditUser';
 
 
 function App() {
@@ -36,6 +36,7 @@ function App() {
           <Route path="/create-user" element={<RegisterForm />} />
           <Route path="/user/:id" element={<UserProfile />} />
           <Route path="/login" element={<LoginForm />} />
+          <Route path="/edit/:id" element={<EditUser />} />
         </Routes>
       </div>
       <footer className="footer">

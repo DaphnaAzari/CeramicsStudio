@@ -8,6 +8,7 @@ export default function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const navigate = useNavigate();
     const token = localStorage.getItem('token');
+    const userId = localStorage.getItem('userId');
     const toggleMenu = () => {
         setIsMobileMenuOpen(prev => !prev);
     };
@@ -38,9 +39,41 @@ export default function Navbar() {
                 <li onClick={closeMenu}><a href="/shop">Shop</a></li>
                 <li onClick={closeMenu}><a href="/events">Events</a></li>
                 <li onClick={closeMenu}><a href="/contact">Contact us</a></li>
-                {!token && <li onClick={() => { closeMenu(); handleLogin(); }}><a>Login</a></li>}
+                {/* {!token && <li onClick={() => { closeMenu(); handleLogin(); }}><a>Login</a></li>}
                 {token && <li onClick={() => { closeMenu(); handleLogout(); }}><a>Logout</a></li>}
                 {!token && <li onClick={closeMenu}><a href="/create-user">Register</a></li>}
+
+                {token && (
+                    <>
+                        {userId && (
+                            <>
+                                <li onClick={closeMenu}><a href={`/user/${userId}`}>My Profile</a></li>
+                                <li onClick={closeMenu}><a href={`/edit/${userId}`}>Edit Profile</a></li>
+                            </>
+                        )}
+                        <li onClick={() => { closeMenu(); handleLogout(); }}><a>Logout</a></li>
+                    </>
+                )} */}
+
+                {!token && (
+                    <>
+                        <li onClick={() => { closeMenu(); handleLogin(); }}><a>Login</a></li>
+                        <li onClick={closeMenu}><a href="/create-user">Register</a></li>
+                    </>
+                )}
+
+                {token && (
+                    <>
+                        {userId && (
+                            <>
+                                <li onClick={closeMenu}><a href={`/user/${userId}`}>My Profile</a></li>
+                                <li onClick={closeMenu}><a href={`/edit/${userId}`}>Edit Profile</a></li>
+                            </>
+                        )}
+                        <li onClick={() => { closeMenu(); handleLogout(); }}><a>Logout</a></li>
+                    </>
+                )}
+
             </ul>
         </nav>
     );

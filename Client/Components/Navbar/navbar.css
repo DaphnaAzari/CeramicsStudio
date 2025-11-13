@@ -88,6 +88,8 @@
     }
 
     .navMenu {
+        align-items: flex-start;
+
         display: none;
         position: absolute;
         top: 60px;
@@ -101,15 +103,22 @@
         gap: 0;
     }
 
+    .navMenu li {
+        width: 100%;
+        text-align: left;
+        padding: 0.5rem 1rem;
+    }
+
     .navMenu.active {
         display: flex;
     }
 
-    .navMenu li {
-        text-align: left;
+    .navMenu li:last-child {
+        /* text-align: left;
         border-top: 1px solid #444;
         padding: 0.5rem 1rem;
-        display: block;
+        display: block; */
+        margin-left: 0;
     }
 
     .navMenu li:hover {
