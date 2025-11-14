@@ -62,7 +62,40 @@ export default function Navbar() {
                     </>
                 )}
 
-                {token && (
+                {token && userId && (
+                    <li className="dropdown">
+                        <a href={`/user/${userId}`} className="profile-link">
+                            My Profile
+                        </a>
+
+                        <ul className="dropdown-content">
+                            <li onClick={closeMenu}>
+                                <a href={`/edit/${userId}`}>Edit</a>
+                            </li>
+
+                            <li onClick={() => { closeMenu(); handleLogout(); }}>
+                                <a href="#">Logout</a>
+                            </li>
+                        </ul>
+                    </li>
+                )}
+                {/* {token && userId && (
+                    <li className="dropdown">
+                        <a href={`/user/${userId}`} className="profile-link">
+                            My Profile
+                        </a>
+
+                        <ul className="dropdown-content">
+                            <li onClick={closeMenu}>
+                                <a href={`/edit/${userId}`}>Edit Profile</a>
+                            </li>
+                        </ul>
+                    </li>
+                )} */}
+
+
+                {/* ____ */}
+                {/* {token && (
                     <>
                         {userId && (
                             <>
@@ -72,7 +105,7 @@ export default function Navbar() {
                         )}
                         <li onClick={() => { closeMenu(); handleLogout(); }}><a>Logout</a></li>
                     </>
-                )}
+                )} */}
 
             </ul>
         </nav>

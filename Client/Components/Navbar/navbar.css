@@ -12,7 +12,6 @@
     z-index: 1000;
     height: 60px;
     flex-wrap: nowrap;
-
 }
 
 .site-title {
@@ -33,7 +32,7 @@
     background-color: #555
 }
 
-.navMenu {
+/* .navMenu {
     list-style: none;
     display: flex;
     gap: 1rem;
@@ -44,6 +43,18 @@
     overflow-x: hidden;
     flex-grow: 1;
     flex-shrink: 1;
+} */
+
+.navMenu {
+    list-style: none;
+    display: flex;
+    gap: 0.15rem;
+    margin: 0;
+    padding: 0 1.25rem;
+    /* width: auto; */
+    flex-grow: 0;
+    justify-content: flex-end;
+    overflow: visible;
 }
 
 .navMenu li {
@@ -53,10 +64,10 @@
     padding: 0;
 }
 
-.navMenu li:last-child {
+/* .navMenu li:last-child {
     margin-left: auto;
-    /* pushes last items to the right */
-}
+     pushes last items to the right 
+} */
 
 .navMenu a {
     color: white;
@@ -81,6 +92,69 @@
     cursor: pointer;
 }
 
+.dropdown {
+    position: relative;
+}
+
+/* My Profile main link */
+.profile-link {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 0.75rem;
+    height: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.profile-link:hover {
+    background-color: #555;
+    border-radius: 5px;
+}
+
+/* Dropdown menu */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 50px;
+    background-color: #333;
+    border: 1px solid #444;
+    padding-left: 0;
+
+}
+
+
+
+.dropdown-content li {
+    list-style: none;
+    width: 100%;
+}
+
+
+.dropdown-content a {
+    display: block;
+    padding: 0.75rem 1rem;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+}
+
+
+.dropdown-content li:hover {
+    background-color: #555;
+}
+
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+.dropdown-content a:hover {
+    background-color: #555;
+
+}
+
+
 /* Responsive menu toggle */
 @media (max-width: 1589px) {
     .menu-toggle {
@@ -89,7 +163,6 @@
 
     .navMenu {
         align-items: flex-start;
-
         display: none;
         position: absolute;
         top: 60px;
