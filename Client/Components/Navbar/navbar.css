@@ -197,4 +197,9 @@
     .navMenu li:hover {
         background-color: #555;
     }
+
+    .dropdown-content {
+        display: none !important;
+        position: static;
+    }
 }

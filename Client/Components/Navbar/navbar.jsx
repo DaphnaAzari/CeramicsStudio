@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './navbar.css';
 import DensityMediumIcon from '@mui/icons-material/DensityMedium';
 
 
 export default function Navbar() {
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 1589);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const navigate = useNavigate();
     const token = localStorage.getItem('token');
@@ -24,6 +25,13 @@ export default function Navbar() {
     const handleLogin = () => {
         navigate('/login');
     };
+
+
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth <= 1589);
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
     return (
         <nav className="nav">
             <a href="/" className="site-title">The Ceramics Studio Co-op</a>
@@ -39,21 +47,7 @@ export default function Navbar() {
                 <li onClick={closeMenu}><a href="/shop">Shop</a></li>
                 <li onClick={closeMenu}><a href="/events">Events</a></li>
                 <li onClick={closeMenu}><a href="/contact">Contact us</a></li>
-                {/* {!token && <li onClick={() => { closeMenu(); handleLogin(); }}><a>Login</a></li>}
-                {token && <li onClick={() => { closeMenu(); handleLogout(); }}><a>Logout</a></li>}
-                {!token && <li onClick={closeMenu}><a href="/create-user">Register</a></li>}
 
-                {token && (
-                    <>
-                        {userId && (
-                            <>
-                                <li onClick={closeMenu}><a href={`/user/${userId}`}>My Profile</a></li>
-                                <li onClick={closeMenu}><a href={`/edit/${userId}`}>Edit Profile</a></li>
-                            </>
-                        )}
-                        <li onClick={() => { closeMenu(); handleLogout(); }}><a>Logout</a></li>
-                    </>
-                )} */}
 
                 {!token && (
                     <>
@@ -61,8 +55,58 @@ export default function Navbar() {
                         <li onClick={closeMenu}><a href="/create-user">Register</a></li>
                     </>
                 )}
-
                 {token && userId && (
+                    <>
+                        {!isMobile && (
+                            // desktop version:
+                            <li className="dropdown">
+                                <a href={`/user/${userId}`} className="profile-link">
+                                    My Profile
+                                </a>
+
+                                <ul className="dropdown-content">
+                                    <li onClick={closeMenu}>
+                                        <a href={`/edit/${userId}`}>Edit</a>
+                                    </li>
+
+                                    <li
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            closeMenu();
+                                            handleLogout();
+                                        }}
+                                    >
+                                        <a href="#">Logout</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        )}
+
+                        {isMobile && (
+                            // phone & tablet:
+                            <>
+                                <li onClick={closeMenu}>
+                                    <a href={`/user/${userId}`}>My Profile</a>
+                                </li>
+
+                                <li onClick={closeMenu}>
+                                    <a href={`/edit/${userId}`}>Edit Profile</a>
+                                </li>
+
+                                <li
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        closeMenu();
+                                        handleLogout();
+                                    }}
+                                >
+                                    <a href="#">Logout</a>
+                                </li>
+                            </>
+                        )}
+                    </>
+                )}
+                {/* {token && userId && (
                     <li className="dropdown">
                         <a href={`/user/${userId}`} className="profile-link">
                             My Profile
@@ -78,34 +122,8 @@ export default function Navbar() {
                             </li>
                         </ul>
                     </li>
-                )}
-                {/* {token && userId && (
-                    <li className="dropdown">
-                        <a href={`/user/${userId}`} className="profile-link">
-                            My Profile
-                        </a>
-
-                        <ul className="dropdown-content">
-                            <li onClick={closeMenu}>
-                                <a href={`/edit/${userId}`}>Edit Profile</a>
-                            </li>
-                        </ul>
-                    </li>
                 )} */}
 
-
-                {/* ____ */}
-                {/* {token && (
-                    <>
-                        {userId && (
-                            <>
-                                <li onClick={closeMenu}><a href={`/user/${userId}`}>My Profile</a></li>
-                                <li onClick={closeMenu}><a href={`/edit/${userId}`}>Edit Profile</a></li>
-                            </>
-                        )}
-                        <li onClick={() => { closeMenu(); handleLogout(); }}><a>Logout</a></li>
-                    </>
-                )} */}
 
             </ul>
         </nav>

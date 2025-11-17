@@ -32,23 +32,6 @@ const makeUser = async (req, res) => {
             }
         }
 
-        // let parsedSocials = {};
-        // if (req.body.socials) {
-        //     try {
-        //         parsedSocials = typeof req.body.socials === 'string'
-        //             ? JSON.parse(req.body.socials)
-        //             : req.body.socials;
-        //     } catch (err) {
-        //         console.error('Error parsing socials:', err);
-        //         return res.status(400).json({ error: 'Invalid socials format' });
-        //     }
-        // }
-
-
-        // parsedSocials.instagram = parsedSocials.instagram || '';
-        // parsedSocials.website = parsedSocials.website || '';
-
-
 
         // extract Cloudinary image fields
         let image = { url: '', public_id: '' };
@@ -131,22 +114,19 @@ const getUserById = async (req, res) => {
         res.status(500).json({ error: 'Server error' });
     }
 };
-//old version:
-// const updateUser = async (req, res) => {
-//     try {
-//         const updatedUser = await User.findByIdAndUpdate(
-//             req.params.id,
-//             req.body,
-//             { new: true }
-//         ).select('-password');
 
-//         if (!updatedUser) return res.status(404).json({ error: 'User not found' });
-//         res.status(200).json(updatedUser);
-//     } catch (err) {
-//         console.error('Error updating user:', err);
-//         res.status(500).json({ error: 'Server error' });
-//     }
-// };
+// GET ALL USERS
+const getAllUsers = async (req, res) => {
+    try {
+        const users = await User.find().select('-password');
+        res.status(200).json(users);
+    } catch (err) {
+        res.status(500).json({ error: 'Server error' });
+    }
+};
+
+
+
 
 const updateUser = async (req, res) => {
     try {
@@ -191,6 +171,25 @@ const updateUser = async (req, res) => {
     }
 };
 
+// DELETE USER
+const deleteUser = async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id);
+        if (!user) return res.status(404).json({ message: 'User not found' });
+
+        // prevent deleting someone else's account
+        if (req.user.id !== user.id) {
+            return res.status(401).json({ message: 'Not authorized to delete this user' });
+        }
+
+        await user.deleteOne();
+        res.status(200).json({ message: 'User deleted successfully' });
+
+    } catch (error) {
+        res.status(500).json({ message: 'Server error while deleting user' });
+    }
+};
+
 const loginUser = async (req, res) => {
     const { email, password } = req.body;
 
@@ -223,4 +222,6 @@ const loginUser = async (req, res) => {
         res.status(500).json({ message: 'Server error' });
     }
 };
-module.exports = { makeUser, getUserById, updateUser, loginUser };
+
+
+module.exports = { makeUser, getUserById, getAllUsers, updateUser, deleteUser, loginUser };

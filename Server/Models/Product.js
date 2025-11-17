@@ -8,8 +8,12 @@ const productSchema = new Schema({
         required: true
     },
     userId: {
-        type: String,
-        required: true
+        // type: String,
+        // required: true
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true,
+        index: true
     },
     price: {
         type: Number,
@@ -20,10 +24,12 @@ const productSchema = new Schema({
         required: true,
         enum: ['Animal Figures', 'Human Figures', 'Homeware', 'Abstract']
 
+    },
+    image: {
+        url: { type: String, default: '' },
+        public_id: { type: String, default: '' },
+        required: true
     }
 });
 
-const Product = mongoose.model('Product', productSchema);
-
-// Optional- only if needed elsewhere
 module.exports = Product;

@@ -16,21 +16,20 @@ html {
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    /* This part centers the whole box */
-    max-width: 900px;
+    max-width: 1200px;
     width: 100%;
-
     margin: 0 auto;
     padding: 32px;
     font-size: 1.2rem;
     box-sizing: border-box;
     text-align: left;
     color: #333;
+    flex: 0 0 auto;
 }
 
-.profile-header h1 {
-    font-size: 2.8rem;
-    margin-bottom: 20px;
+.user-profile .profile-header h1 {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
     text-align: left;
 }
 
@@ -44,7 +43,7 @@ html {
     box-sizing: border-box;
 }
 
-.user-profile .contact-details {
+/* .user-profile .contact-details {
     text-align: left;
     border: 2px solid #333;
     border-radius: 15px;
@@ -53,7 +52,7 @@ html {
     box-sizing: border-box;
     background-color: rgba(255, 255, 255, 0.9);
 
-}
+} */
 
 .contact-details p {
     color: #333;
@@ -146,6 +145,12 @@ html {
         font-size: 1rem;
     }
 
+    .user-profile .profile-header h1 {
+        font-size: 1.6rem;
+        margin-bottom: 10px;
+        text-align: left;
+    }
+
     .user-fullname {
         font-size: 1.2rem;
     }
@@ -165,6 +170,12 @@ html {
         font-size: 0.95rem;
     }
 
+    .user-profile .profile-header h1 {
+        font-size: 1.4rem;
+        margin-bottom: 10px;
+        text-align: left;
+    }
+
     .user-fullname {
         font-size: 1rem;
         flex-direction: column;
@@ -172,16 +183,16 @@ html {
     }
 
     .user-profile p {
-        font-size: 0.85rem;
+        font-size: 0.65rem;
     }
 
     .user-profile p b {
         width: 100px;
     }
 
-    h1 {
-        font-size: 1.5rem;
-    }
+    /* h1 {
+        font-size: 1rem;
+    } */
 }
 
 /* update: */
@@ -191,9 +202,16 @@ html {
         max-width: calc(100% - 24px);
     }
 
-    .profile-header h1 {
-        font-size: 1.4rem;
+    /* .user-profile .profile-header h1 {
+        font-size: 1.2rem;
         margin-bottom: 10px;
+        text-align: left;
+    } */
+
+    .user-profile .profile-header h1 {
+        font-size: 1rem;
+        margin-bottom: 10px;
+        text-align: left;
     }
 
     .image-preview {
@@ -205,6 +223,28 @@ html {
     .contact-details {
         padding: 12px;
     }
+
+    .contact-details p {
+        color: #333;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    .contact-details h2 {
+        margin-bottom: 10px;
+        color: #333;
+        text-decoration: none;
+        font-weight: 600;
+        text-align: left;
+        font-size: 0.8rem;
+    }
+
+    .user-profile p {
+        font-size: 0.6rem;
+        margin-bottom: 10px;
+        color: #333;
+        text-align: left;
+    }
 }
 
 /* slightly larger phones & tight tablets */
@@ -212,6 +252,12 @@ html {
     .user-profile {
         padding: 16px;
         max-width: calc(100% - 32px);
+    }
+
+    .user-profile .profile-header h1 {
+        font-size: 0.98rem;
+        margin-bottom: 10px;
+        text-align: left;
     }
 
     .profile-header h1 {
