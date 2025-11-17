@@ -77,15 +77,28 @@ const makeUser = async (req, res) => {
         console.log('Generated token for new user:', token);
 
 
+        // res.status(201).json({
+        //     _id: savedUser._id,
+        //     firstName: savedUser.firstName,
+        //     lastName: savedUser.lastName,
+        //     userName: savedUser.userName,
+        //     email: savedUser.email,
+        //     image: savedUser.image,
+        //     socials: savedUser.socials,
+        //     token,
+        // });
+
         res.status(201).json({
-            _id: savedUser._id,
-            firstName: savedUser.firstName,
-            lastName: savedUser.lastName,
-            userName: savedUser.userName,
-            email: savedUser.email,
-            image: savedUser.image,
-            socials: savedUser.socials,
-            token,
+            user: {
+                _id: savedUser._id,
+                firstName: savedUser.firstName,
+                lastName: savedUser.lastName,
+                userName: savedUser.userName,
+                email: savedUser.email,
+                image: savedUser.image,
+                socials: savedUser.socials
+            },
+            token
         });
     } catch (err) {
         // 🔧 Better error output and JSON response
@@ -206,17 +219,30 @@ const loginUser = async (req, res) => {
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1d' });
 
         // sends user info & token
+
+        // res.status(200).json({
+        //     _id: user._id,
+        //     firstName: user.firstName,
+        //     lastName: user.lastName,
+        //     userName: user.userName,
+        //     email: user.email,
+        //     image: user.image || null,
+        //     socials: user.socials || {},
+        //     token
+        // });
+
         res.status(200).json({
-            _id: user._id,
-            firstName: user.firstName,
-            lastName: user.lastName,
-            userName: user.userName,
-            email: user.email,
-            image: user.image || null,
-            socials: user.socials || {},
+            user: {
+                _id: user._id,
+                firstName: user.firstName,
+                lastName: user.lastName,
+                userName: user.userName,
+                email: user.email,
+                image: user.image || null,
+                socials: user.socials || {}
+            },
             token
         });
-
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Server error' });

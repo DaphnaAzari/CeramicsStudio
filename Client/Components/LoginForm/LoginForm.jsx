@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from '../context/AuthContext';
+import { AuthContext } from "../../src/context/AuthContext.jsx";
 import axios from "axios";
 import './LoginForm.css';
 
@@ -35,13 +35,23 @@ export default function LoginForm() {
             //localStorage.setItem('token', res.data.token);
             //localStorage.setItem('userId', res.data._id);
 
-            login(res.data.token, res.data.user);
+            //*** */ login(res.data.token, res.data.user);
+
+            login(
+                res.data.token,
+                res.data.user._id,
+                res.data.user
+            );
+
+            // login(res.data.token, res.data.user._id);
 
             // Redirect to user profile page
             //navigate(`/user/${res.data._id}`);
 
             // Redirect to the profile page of the logged in user
             navigate(`/user/${res.data.user._id}`);
+
+            // navigate(`/user/${res.data.user._id}`);
 
         } catch (err) {
             console.error("Login failed:", err);

@@ -1,6 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './navbar.css';
+// import { AuthContext } from "../../src/context/AuthContext.jsx";
+import { AuthContext } from "../../src/context/AuthContext.jsx";
 import DensityMediumIcon from '@mui/icons-material/DensityMedium';
 
 
@@ -8,8 +10,13 @@ export default function Navbar() {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 1589);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const navigate = useNavigate();
-    const token = localStorage.getItem('token');
-    const userId = localStorage.getItem('userId');
+
+    // const token = localStorage.getItem('token');
+    // const userId = localStorage.getItem('userId');
+
+    const { token, user } = useContext(AuthContext);
+    const userId = user?._id;
+
     const toggleMenu = () => {
         setIsMobileMenuOpen(prev => !prev);
     };
