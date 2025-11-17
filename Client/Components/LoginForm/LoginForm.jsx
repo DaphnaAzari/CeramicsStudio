@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from '../context/AuthContext';
 import axios from "axios";
 import './LoginForm.css';
 
@@ -8,6 +9,10 @@ export default function LoginForm() {
     const [formData, setFormData] = useState({ email: '', password: '' });
     const [error, setError] = useState('');
     const navigate = useNavigate();
+
+
+    // get login() function from AuthContext - authenticating frontend!
+    const { login } = useContext(AuthContext);
 
     // updates form state when user types
     const handleChange = (e) => {
@@ -27,11 +32,17 @@ export default function LoginForm() {
             console.log("Login success:", res.data);
 
             // Save JWT token and user ID
-            localStorage.setItem('token', res.data.token);
-            localStorage.setItem('userId', res.data._id);
+            //localStorage.setItem('token', res.data.token);
+            //localStorage.setItem('userId', res.data._id);
+
+            login(res.data.token, res.data.user);
 
             // Redirect to user profile page
-            navigate(`/user/${res.data._id}`);
+            //navigate(`/user/${res.data._id}`);
+
+            // Redirect to the profile page of the logged in user
+            navigate(`/user/${res.data.user._id}`);
+
         } catch (err) {
             console.error("Login failed:", err);
             setError(err.response?.data?.message || 'Invalid email or password');
