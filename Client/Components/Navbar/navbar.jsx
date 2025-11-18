@@ -1,7 +1,6 @@
 import { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './navbar.css';
-// import { AuthContext } from "../../src/context/AuthContext.jsx";
 import { AuthContext } from "../../src/context/AuthContext.jsx";
 import DensityMediumIcon from '@mui/icons-material/DensityMedium';
 
@@ -14,7 +13,10 @@ export default function Navbar() {
     // const token = localStorage.getItem('token');
     // const userId = localStorage.getItem('userId');
 
-    const { token, user } = useContext(AuthContext);
+    // const { token, user } = useContext(AuthContext);
+    // const userId = user?._id;
+
+    const { token, user, logout } = useContext(AuthContext);
     const userId = user?._id;
 
     const toggleMenu = () => {
@@ -24,9 +26,15 @@ export default function Navbar() {
     const closeMenu = () => {
         setIsMobileMenuOpen(false);
     };
+    // const handleLogout = () => {
+    //     localStorage.removeItem('token');
+    //     navigate('/login');
+    // };
+
+    //use the AuthContext logout:
     const handleLogout = () => {
-        localStorage.removeItem('token');
-        navigate('/login');
+        logout();
+        navigate("/login");
     };
 
     const handleLogin = () => {
@@ -55,8 +63,61 @@ export default function Navbar() {
                 <li onClick={closeMenu}><a href="/events">Events</a></li>
                 <li onClick={closeMenu}><a href="/contact">Contact us</a></li>
 
-
+                {/* ⭐ login/register (only when NOT logged in) */}
                 {!token && (
+                    <>
+                        <li onClick={() => { closeMenu(); handleLogin(); }}>
+                            <a>Login</a>
+                        </li>
+                        <li onClick={closeMenu}>
+                            <a href="/create-user">Register</a>
+                        </li>
+                    </>
+                )}
+
+                {/* profile/ logout (only when logged in) */}
+                {token && userId && (
+                    <>
+                        {!isMobile && (
+                            <li className="dropdown">
+                                <a href={`/user/${userId}`} className="profile-link">
+                                    My Profile
+                                </a>
+
+                                <ul className="dropdown-content">
+                                    <li onClick={closeMenu}>
+                                        <a href={`/edit/${userId}`}>Edit</a>
+                                    </li>
+
+                                    <li onClick={(e) => { e.preventDefault(); handleLogout(); }}>
+                                        <a href="#">Logout</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        )}
+
+                        {isMobile && (
+                            <>
+                                <li onClick={closeMenu}>
+                                    <a href={`/user/${userId}`}>My Profile</a>
+                                </li>
+
+                                <li onClick={closeMenu}>
+                                    <a href={`/edit/${userId}`}>Edit Profile</a>
+                                </li>
+
+                                <li onClick={(e) => { e.preventDefault(); handleLogout(); }}>
+                                    <a href="#">Logout</a>
+                                </li>
+                            </>
+                        )}
+                    </>
+                )}
+            </ul>
+        </nav>
+    );
+}
+{/* {!token && (
                     <>
                         <li onClick={() => { closeMenu(); handleLogin(); }}><a>Login</a></li>
                         <li onClick={closeMenu}><a href="/create-user">Register</a></li>
@@ -65,7 +126,8 @@ export default function Navbar() {
                 {token && userId && (
                     <>
                         {!isMobile && (
-                            // desktop version:
+
+                        ** desktop version:
                             <li className="dropdown">
                                 <a href={`/user/${userId}`} className="profile-link">
                                     My Profile
@@ -90,7 +152,8 @@ export default function Navbar() {
                         )}
 
                         {isMobile && (
-                            // phone & tablet:
+
+                            ** phone & tablet:
                             <>
                                 <li onClick={closeMenu}>
                                     <a href={`/user/${userId}`}>My Profile</a>
@@ -113,28 +176,12 @@ export default function Navbar() {
                         )}
                     </>
                 )}
-                {/* {token && userId && (
-                    <li className="dropdown">
-                        <a href={`/user/${userId}`} className="profile-link">
-                            My Profile
-                        </a>
-
-                        <ul className="dropdown-content">
-                            <li onClick={closeMenu}>
-                                <a href={`/edit/${userId}`}>Edit</a>
-                            </li>
-
-                            <li onClick={() => { closeMenu(); handleLogout(); }}>
-                                <a href="#">Logout</a>
-                            </li>
-                        </ul>
-                    </li>
-                )} */}
+               
 
 
             </ul>
         </nav>
     );
-}
+} */}
 
 

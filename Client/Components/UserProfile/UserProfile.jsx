@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 //used for frontend validation:
 import { AuthContext } from "../../src/context/AuthContext.jsx";
 import getUserById from '../../src/api/getUserById';
+import getProductsByUser from "../../src/api/getProductsByUser";
 import './UserProfile.css';
 
 export default function UserProfile() {
@@ -16,6 +17,10 @@ export default function UserProfile() {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+
+    //setting state to display products on userprofile:
+    const [products, setProducts] = useState([]);
+
 
     //user: holds the user data we get from the backend.
 
@@ -28,6 +33,11 @@ export default function UserProfile() {
             try {
                 const data = await getUserById(id);
                 setUser(data);
+
+                // Fetch products for user
+            const userProducts = await getProductsByUser(id);
+            
+            setProducts(userProducts);
             } catch (err) {
                 setError('Failed to load user profile');
             } finally {
@@ -103,7 +113,30 @@ export default function UserProfile() {
                     Add New Product
                 </button>
             )}
-        </div>  
+
+            {/* Artwork Gallery: */}
+            <div className="user-products">
+                <h2>Artwork by {user.userName}:</h2>
+
+                <div className="product-gallery">
+                    {products.length === 0 && <p>No products yet.</p>}
+
+                    {products.map(product => (
+    <div
+        key={product._id}
+        className="product-card"
+        onClick={() => navigate(`/products/${product._id}`)}
+        style={{ cursor: "pointer" }}
+    >
+        <img
+            src={product.image.url}
+            alt={product.productName}
+        />
+    </div>
+))}
+                </div>
+            </div>
+        </div>
     );
 }
 

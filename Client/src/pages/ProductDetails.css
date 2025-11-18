@@ -1,0 +1,188 @@
+/* this removes ALL inherited or global styles */
+.product-details-wrapper {
+    all: unset;
+    /* override global styles */
+    display: block;
+    width: 100%;
+}
+
+
+.product-details-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 40px;
+    text-align: left;
+}
+
+
+.product-title {
+    font-size: 2.2rem;
+    margin-bottom: 30px;
+    font-weight: 700;
+    text-align: left;
+}
+
+/*layout */
+/* display flex places the image and the info side-by-side, gap is space between them */
+.product-main {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+/* product img ( object-fit cover : prevents distortion & crops instead of stretching.: */
+.product-image {
+    width: 360px;
+    height: 360px;
+    border-radius: 12px;
+    object-fit: cover;
+    border: 3px solid black;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* details sec: */
+.product-info {
+    flex: 1;
+    font-size: 1.1rem;
+    color: #222;
+}
+
+/* price & type of art: */
+.product-price,
+.product-type {
+    margin-bottom: 18px;
+    font-size: 1.15rem;
+}
+
+
+.artist-box {
+    margin-top: 30px;
+    padding: 20px;
+    background: rgba(245, 245, 245, 0.9);
+    border-radius: 12px;
+    border: 3px solid black;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.artist-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 12px;
+    object-fit: cover;
+    border: 3px solid black;
+}
+
+.artist-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* Responsive:  */
+@media (max-width: 1024px) {
+
+    .product-details-container {
+        padding: 30px;
+        max-width: 90%;
+    }
+
+    .product-main {
+        gap: 30px;
+    }
+
+    .product-image {
+        width: 320px;
+        height: 320px;
+    }
+
+    .product-info {
+        font-size: 1rem;
+    }
+}
+
+/* phones: */
+@media (max-width: 768px) {
+
+    .product-details-container {
+        padding: 24px;
+        max-width: 92%;
+    }
+
+    .product-title {
+        font-size: 1.8rem;
+        text-align: center;
+    }
+
+    .product-main {
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+    }
+
+    .product-image {
+        width: 100%;
+        max-width: 400px;
+        height: auto;
+    }
+
+    .product-info {
+        text-align: center;
+        width: 100%;
+    }
+
+    .artist-box {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        gap: 10px;
+    }
+}
+
+/* Extra small phones */
+@media (max-width: 480px) {
+
+    .product-details-container {
+        padding: 18px;
+        max-width: 94%;
+    }
+
+    .product-title {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .product-image {
+        max-width: 100%;
+    }
+
+    .artist-img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .artist-name {
+        font-size: 1rem;
+    }
+}
+
+
+@media (max-width: 360px) {
+
+    .product-details-container {
+        padding: 12px;
+    }
+
+    .product-title {
+        font-size: 1.3rem;
+    }
+
+    .product-info {
+        font-size: 0.9rem;
+    }
+
+    .artist-box {
+        padding: 14px;
+        gap: 8px;
+    }
+}

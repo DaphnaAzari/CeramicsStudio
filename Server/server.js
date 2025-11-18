@@ -7,6 +7,7 @@ const cors = require('cors');
 
 const workshopRoutes = require('./Routes/workshopRoutes');
 const userRoutes = require('./Routes/userRoutes');
+const productRoutes = require('./Routes/productRoutes');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -41,6 +42,7 @@ app.use((req, res, next) => {
 
 app.use('/users', userRoutes); // notice /users matches frontend fetch
 app.use('/workshop', workshopRoutes);
+app.use('/products', productRoutes);
 
 // Start server after DB connection
 mongoose.connection.once('open', () => {

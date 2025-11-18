@@ -9,6 +9,7 @@ const {
     createProduct,
     getProducts,
     getUserProducts,
+    getProductById,
     updateProduct,
     deleteProduct
 } = require('../controllers/productC');
@@ -16,6 +17,7 @@ const {
 router.post('/', protect, uploadAndHandleErrors, validateProduct, createProduct);
 router.get('/', getProducts);
 router.get('/user/:userId', getUserProducts);
+router.get('/:id', getProductById);
 router.put('/:id', protect, uploadAndHandleErrors, updateProduct);
 router.delete('/:id', protect, deleteProduct);
 

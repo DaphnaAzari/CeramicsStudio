@@ -37,11 +37,13 @@ export default function LoginForm() {
 
             //*** */ login(res.data.token, res.data.user);
 
-            login(
-                res.data.token,
-                res.data.user._id,
-                res.data.user
-            );
+            login(res.data.token, res.data.user);
+
+            // login(
+            //     res.data.token,
+            //     res.data.user._id,
+            //     res.data.user
+            // );
 
             // login(res.data.token, res.data.user._id);
 

@@ -1,0 +1,8 @@
+@import "../EditUser/EditUser.css";
+
+.create-product-section {
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+    flex-wrap: wrap;
+}

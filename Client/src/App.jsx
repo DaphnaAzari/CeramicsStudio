@@ -14,6 +14,8 @@ import RegisterForm from '../Components/RegisterForm/RegisterForm';
 import UserProfile from '../Components/UserProfile/UserProfile';
 import LoginForm from '../Components/LoginForm/LoginForm';
 import EditUser from '../Components/EditUser/EditUser';
+import ProductDetails from "./pages/ProductDetails";
+import CreateProduct from "../Components/CreateProduct/CreateProduct";
 
 
 function App() {
@@ -37,6 +39,8 @@ function App() {
           <Route path="/user/:id" element={<UserProfile />} />
           <Route path="/login" element={<LoginForm />} />
           <Route path="/edit/:id" element={<EditUser />} />
+          <Route path="/products/new" element={<CreateProduct />} />
+          <Route path="/products/:id" element={<ProductDetails />} />
         </Routes>
       </div>
       <footer className="footer">

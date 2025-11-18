@@ -26,10 +26,11 @@ const productSchema = new Schema({
 
     },
     image: {
-        url: { type: String, default: '' },
-        public_id: { type: String, default: '' },
-        required: true
+        url: { type: String, default: '', required: true },
+        public_id: { type: String, default: '', required: true }
+
     }
 });
 
+const Product = mongoose.model("Product", productSchema);
 module.exports = Product;
