@@ -10,6 +10,7 @@ import getUserById from '../../src/api/getUserById';
 import getProductsByUser from "../../src/api/getProductsByUser";
 import './UserProfile.css';
 
+
 export default function UserProfile() {
     const { id } = useParams();
     const navigate = useNavigate(); // for redirecting after logout
@@ -58,6 +59,12 @@ export default function UserProfile() {
 
     return (
         <div className="user-profile">
+            {/* <button 
+        className="back-to-artists-btn"
+        onClick={() => navigate("/artists")}
+    >
+        Back to All Artists
+    </button> */}
             <div className="profile-header">
                 <h1>{user.userName}</h1>
             </div>
@@ -133,11 +140,21 @@ export default function UserProfile() {
             alt={product.productName}
         />
     </div>
+    
 ))}
                 </div>
             </div>
+            <div className="back-to-artists-container">
+        <button 
+            className="back-to-artists-btn"
+            onClick={() => navigate("/artists")}
+        >
+        Back to All Artists
+        </button>
+        </div>
         </div>
     );
+   
 }
 
 //     return (
