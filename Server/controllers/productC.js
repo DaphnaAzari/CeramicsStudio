@@ -50,7 +50,8 @@ const getProducts = async (req, res) => {
     try {
         const filter = req.query.artType ? { artType: req.query.artType } : {};
         const products = await Product.find(filter);
-        res.json(products);
+        //res.json(products);
+        res.status(200).json({ products })
     } catch (err) {
         console.error("Error fetching products:", err);
         res.status(500).json({ message: "Server error fetching products" });
@@ -61,12 +62,23 @@ const getProducts = async (req, res) => {
 const getUserProducts = async (req, res) => {
     try {
         const products = await Product.find({ userId: req.params.userId });
-        res.json(products);
+        res.status(200).json({ products }); // <-- wrap array in object
     } catch (err) {
         console.error("Error fetching user's products:", err);
         res.status(500).json({ message: "Server error fetching user's products" });
     }
 };
+
+
+// const getUserProducts = async (req, res) => {
+//     try {
+//         const products = await Product.find({ userId: req.params.userId });
+//         res.json(products);
+//     } catch (err) {
+//         console.error("Error fetching user's products:", err);
+//         res.status(500).json({ message: "Server error fetching user's products" });
+//     }
+// };
 
 // GET PRODUCT BY ID
 const getProductById = async (req, res) => {

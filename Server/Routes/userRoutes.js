@@ -48,6 +48,16 @@ router.get('/:id', getUserById);
 
 router.get('/', getAllUsers);
 
+router.get('/debug-artists', async (req, res) => {
+    try {
+        const users = await User.find().select('-password');
+        console.log("Users fetched from DB:", users.length);
+        res.json(users);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: "Error fetching users" });
+    }
+});
 
 //Updated edit that allows both image + form data to be updated:
 

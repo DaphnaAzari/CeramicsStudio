@@ -11,19 +11,45 @@ export default function OurArtists() {
     useEffect(() => {
         const fetchArtists = async () => {
             try {
-                const res = await fetch('http://localhost:3000/users'); // backend URL
-                const data = await res.json();
+                setError(null);
 
-                if (Array.isArray(data)) {
-                    setArtists(data);
-                    console.log("Fetched artists:", data);
-                } else {
-                    setArtists([]);
-                    console.error('Data fetched is not an array:', data);
+                //const res = await fetch('http://localhost:3000/users'); // backend URL
+                //const res = await fetch('http://localhost:8080/users'); // backend URL
+                const res = await axios.get('http://localhost:8080/users');
+
+
+                //setArtists(res.data);
+                //if (!res.ok) {
+                //  throw new Error(`Server error: ${res.status}`);
+                //}
+                //const data = await res.json();
+
+                //             if (Array.isArray(data)) {
+                //                 setArtists(data);
+                //                 console.log("Fetched artists:", data);
+                //             } else {
+                //                 setArtists([]);
+                //                 console.error('Data fetched is not an array:', data);
+                //             }
+                //         } catch (err) {
+                //             setError('Failed to fetch artists');
+                //             console.error(err);
+                //         } finally {
+                //             setLoading(false);
+                //         }
+                //     };
+
+                //     fetchArtists();
+                // }, []);
+                if (!Array.isArray(res.data)) {
+                    throw new Error('Response is not an array');
                 }
+
+                setArtists(res.data);
+                console.log('Fetched artists:', res.data);
             } catch (err) {
-                setError('Failed to fetch artists');
                 console.error(err);
+                setError('Failed to fetch artists');
             } finally {
                 setLoading(false);
             }
@@ -31,7 +57,6 @@ export default function OurArtists() {
 
         fetchArtists();
     }, []);
-
     if (loading) return <p>Loading artists...</p>;
     if (error) return <p>{error}</p>;
 
@@ -46,7 +71,7 @@ export default function OurArtists() {
                 <div className="artistsFlex">
                     {artists.length > 0 ? (
                         artists.map(artist => (
-                            < div key={artist._id} className="artistdiv" >
+                            <div key={artist._id} className="artistdiv">
                                 {
                                     artist.image?.url && (
                                         <div className="artist-image">
@@ -61,7 +86,7 @@ export default function OurArtists() {
                                     <b>{artist.firstName} {artist.lastName}</b>
                                 </h2> */}
 
-                                < h2 className="artistName" >
+                                <h2 className="artistName">
                                     <Link to={`/user/${artist._id}`}>{artist.userName}</Link>
                                 </h2>
                                 <p className="artistUsername">@{artist.userName}</p>
