@@ -1,10 +1,12 @@
 import "./ProductDetails.css";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 const ProductDetails = () => {
     const { id } = useParams();
+    const navigate = useNavigate();
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -12,7 +14,7 @@ const ProductDetails = () => {
     useEffect(() => {
         const fetchProduct = async () => {
             try {
-                const res = await fetch(`http://localhost:3000/products/${id}`);
+                const res = await fetch(`http://localhost:8080/products/${id}`);
                 if (!res.ok) throw new Error("Failed to fetch product");
                 const data = await res.json();
                 setProduct(data);
@@ -85,13 +87,32 @@ const ProductDetails = () => {
                         <p className="product-price"><strong>Price:</strong> £{product.price}</p>
                         <p className="product-type"><strong>Category:</strong> {product.artType}</p>
 
-                        <div className="artist-box">
+                        {/* <div className="artist-box">
                             <img
                                 className="artist-img"
                                 src={product.userId?.image?.url}
                                 alt={product.userId?.userName}
                             />
                             <p className="artist-name"><strong>Artist:</strong> {product.userId?.userName}</p>
+                        </div> */}
+
+                        <div
+                            className="artist-box"
+                            style={{ cursor: product.userId ? "pointer" : "default" }}
+                            onClick={() => {
+                                if (product.userId?._id) {
+                                    navigate(`/user/${product.userId._id}`);
+                                }
+                            }}
+                        >
+                            <img
+                                className="artist-img"
+                                src={product.userId?.image?.url || "/placeholder.png"}
+                                alt={product.userId?.userName || "Unknown Artist"}
+                            />
+                            <p className="artist-name">
+                                <strong>Artist:</strong> {product.userId?.userName || "Unknown Artist"}
+                            </p>
                         </div>
                     </div>
                 </div>

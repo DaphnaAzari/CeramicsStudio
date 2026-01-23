@@ -163,6 +163,20 @@
     color: darkslategrey;
 }
 
+.shop-product-card {
+    display: inline-block;
+    margin: 10px;
+    text-align: center;
+}
+
+.shop-product-img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid #333;
+}
+
 /* responsive: */
 
 @media (max-width: 1024px) {
