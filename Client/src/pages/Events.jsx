@@ -14,8 +14,8 @@ export default function Events() {
 
                 <div className="eventFlex">
                     <div className="inviteDiv">
-                        <h2>Halloween Party & Sale</h2>
-                        <p><b> Please Joint us at the studio on Friday 31st Oct 2025 from 5pm - 9pm!</b></p>
+                        <h2>Party & Sale</h2>
+                        <p><b> Please Joint us at the studio on 16 Feb from 5pm - 9pm!</b></p>
                         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit laboriosam nihil vero adipisci labore, iure quidem blanditiis, molestiae eum, quo obcaecati omnis sit voluptas tempora odit! Reprehenderit, tempora? Amet, nesciunt!</p>
                     </div>
                 </div>

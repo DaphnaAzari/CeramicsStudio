@@ -37,7 +37,7 @@ export default function CreateProduct() {
         try {
             setLoading(true);
 
-            const res = await fetch("http://localhost:3000/products", {
+            const res = await fetch("http://localhost:8080/products", {
                 method: "POST",
                 headers: {
                     Authorization: `Bearer ${token}`,

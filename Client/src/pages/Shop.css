@@ -146,6 +146,10 @@
     box-sizing: border-box;
 }
 
+.shop-product-img {
+    margin-right: 10px;
+}
+
 .itemDiv {
     border: 4px solid black;
     border-radius: 25px;
@@ -196,8 +200,12 @@
     }
 
     .shopFlex {
-        margin: 10px;
+        margin: 30px;
         padding: 0;
+    }
+
+    .shop-product-img {
+        margin-right: 10px;
     }
 
     .shop p,
@@ -208,7 +216,7 @@
     }
 
     .itemDiv {
-        border-width: 2px;
+        border-width: 3x;
         border-radius: 15px;
         padding: 10px;
     }

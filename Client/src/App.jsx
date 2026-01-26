@@ -16,6 +16,9 @@ import LoginForm from '../Components/LoginForm/LoginForm';
 import EditUser from '../Components/EditUser/EditUser';
 import ProductDetails from "./pages/ProductDetails";
 import CreateProduct from "../Components/CreateProduct/CreateProduct";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from './pages/ResetPassword';
+
 
 
 function App() {
@@ -38,6 +41,8 @@ function App() {
           <Route path="/create-user" element={<RegisterForm />} />
           <Route path="/user/:id" element={<UserProfile />} />
           <Route path="/login" element={<LoginForm />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password/:token" element={<ResetPassword />} />
           <Route path="/edit/:id" element={<EditUser />} />
           <Route path="/products/new" element={<CreateProduct />} />
           <Route path="/products/:id" element={<ProductDetails />} />

@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { AuthContext } from "../../src/context/AuthContext.jsx";
 import axios from "axios";
 import './LoginForm.css';
@@ -27,7 +27,7 @@ export default function LoginForm() {
 
         try {
             // Send login request to backend
-            const res = await axios.post('http://localhost:3000/users/login', formData);
+            const res = await axios.post('http://localhost:8080/users/login', formData);
 
             console.log("Login success:", res.data);
 
@@ -111,6 +111,15 @@ export default function LoginForm() {
 
                 <div className="form-actions">
                     <button type="submit" className="btn-submit">Login</button>
+                </div>
+                <div className="login-help">
+                    <button
+                        type="button"
+                        className="link-button"
+                        onClick={() => navigate("/forgot-password")}
+                    >
+                        Forgot password
+                    </button>
                 </div>
             </form>
         </div>

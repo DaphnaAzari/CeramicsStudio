@@ -13,7 +13,7 @@ export default function Shop() {
     const categories = [
         { name: "Animal Figures", description: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit laboriosam nihil vero adipisci labore..." },
         { name: "Human Figures", description: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit laboriosam nihil vero adipisci labore..." },
-        { name: "Tableware", description: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit laboriosam nihil vero adipisci labore..." },
+        { name: "Homeware", description: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit laboriosam nihil vero adipisci labore..." },
         { name: "Abstract", description: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit laboriosam nihil vero adipisci labore..." },
     ];
 

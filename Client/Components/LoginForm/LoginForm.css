@@ -73,6 +73,21 @@ form {
     width: 100%;
 }
 
+.login-help {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.link-button {
+    background: none;
+    border: none;
+    color: #555;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 0.9rem;
+}
+
 /* Responsive Design*/
 
 @media (max-width: 768px) {

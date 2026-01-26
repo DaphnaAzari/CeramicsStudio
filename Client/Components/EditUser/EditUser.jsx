@@ -20,7 +20,7 @@ export default function EditUser() {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const res = await axios.get(`http://localhost:3000/users/${id}`);
+                const res = await axios.get(`http://localhost:8080/users/${id}`);
                 const user = res.data;
 
                 setFormData({
