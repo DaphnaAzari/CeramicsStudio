@@ -36,9 +36,9 @@ export default function UserProfile() {
                 setUser(data);
 
                 // Fetch products for user
-            const userProducts = await getProductsByUser(id);
-            
-            setProducts(userProducts);
+                const userProducts = await getProductsByUser(id);
+
+                setProducts(userProducts);
             } catch (err) {
                 setError('Failed to load user profile');
             } finally {
@@ -129,96 +129,31 @@ export default function UserProfile() {
                     {products.length === 0 && <p>No products yet.</p>}
 
                     {products.map(product => (
-    <div
-        key={product._id}
-        className="product-card"
-        onClick={() => navigate(`/products/${product._id}`)}
-        style={{ cursor: "pointer" }}
-    >
-        <img
-            src={product.image.url}
-            alt={product.productName}
-        />
-    </div>
-    
-))}
+                        <div
+                            key={product._id}
+                            className="product-card"
+                            onClick={() => navigate(`/products/${product._id}`)}
+                            style={{ cursor: "pointer" }}
+                        >
+                            <img
+                                src={product.image.url}
+                                alt={product.productName}
+                            />
+                        </div>
+
+                    ))}
                 </div>
             </div>
             <div className="back-to-artists-container">
-        <button 
-            className="back-to-artists-btn"
-            onClick={() => navigate("/artists")}
-        >
-        Back to All Artists
-        </button>
-        </div>
+                <button
+                    className="back-to-artists-btn"
+                    onClick={() => navigate("/artists")}
+                >
+                    Back to All Artists
+                </button>
+            </div>
         </div>
     );
-   
+
 }
 
-//     return (
-
-//         <div className="user-profile">
-//             <div className="profile-header">
-//                 <h1>{user.userName}</h1>
-
-//             </div>
-//             {user.image && user.image.url && (
-//                 <div className="image-preview">
-//                     <img src={user.image.url} alt={`${user.userName}'s profile`} />
-
-//                 </div>
-//             )}
-//             <div className="contact-details">
-//                 <h2>{user.firstName} {user.lastName}'s Contact Info:</h2>
-
-//                 <p> {user.email}</p>
-               
-
-//                 {user.socials && (
-//                     <div className="user-socials">
-//                         {user.socials.instagram && (
-//                             <p>
-//                                 <a
-//                                     href={user.socials.instagram.startsWith('http')
-//                                         ? user.socials.instagram
-//                                         : `https://${user.socials.instagram}`}
-//                                     target="_blank"
-//                                     rel="noopener noreferrer"
-//                                 >
-//                                     Instagram
-//                                 </a>
-//                             </p>
-//                         )}
-
-//                         {user.socials.website && (
-//                             <p>
-//                                 <a
-//                                     href={user.socials.website.startsWith('http')
-//                                         ? user.socials.website
-//                                         : `https://${user.socials.website}`}
-//                                     target="_blank"
-//                                     rel="noopener noreferrer"
-//                                 >
-//                                     Website
-//                                 </a>
-//                             </p>
-//                         )}
-//                     </div>
-//                 )}
-//             </div>
-//             {loggedInUser && loggedInUser._id === id && (
-//                 <button
-//                     className="add-product-btn"
-//                     onClick={() => navigate("/products/new")}
-//                 >
-//                     Add New Product
-//                 </button>
-//             )}
-
-//         </div>  
-//         </div>
-
-//     );
-// }

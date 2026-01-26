@@ -43,16 +43,6 @@ html {
     box-sizing: border-box;
 }
 
-/* .user-profile .contact-details {
-    text-align: left;
-    border: 2px solid #333;
-    border-radius: 15px;
-    padding: 15px 20px;
-    width: 100%;
-    box-sizing: border-box;
-    background-color: rgba(255, 255, 255, 0.9);
-
-} */
 
 .contact-details p {
     color: #333;
@@ -251,9 +241,7 @@ html {
         width: 100px;
     }
 
-    /* h1 {
-        font-size: 1rem;
-    } */
+
 }
 
 /* update: */
@@ -263,11 +251,7 @@ html {
         max-width: calc(100% - 24px);
     }
 
-    /* .user-profile .profile-header h1 {
-        font-size: 1.2rem;
-        margin-bottom: 10px;
-        text-align: left;
-    } */
+
 
     .user-profile .profile-header h1 {
         font-size: 1rem;

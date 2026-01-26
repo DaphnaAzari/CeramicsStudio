@@ -10,11 +10,7 @@ export default function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const navigate = useNavigate();
 
-    // const token = localStorage.getItem('token');
-    // const userId = localStorage.getItem('userId');
 
-    // const { token, user } = useContext(AuthContext);
-    // const userId = user?._id;
 
     const { token, user, logout } = useContext(AuthContext);
     const userId = user?._id;
@@ -26,10 +22,7 @@ export default function Navbar() {
     const closeMenu = () => {
         setIsMobileMenuOpen(false);
     };
-    // const handleLogout = () => {
-    //     localStorage.removeItem('token');
-    //     navigate('/login');
-    // };
+
 
     //use the AuthContext logout:
     const handleLogout = () => {
@@ -117,71 +110,3 @@ export default function Navbar() {
         </nav>
     );
 }
-{/* {!token && (
-                    <>
-                        <li onClick={() => { closeMenu(); handleLogin(); }}><a>Login</a></li>
-                        <li onClick={closeMenu}><a href="/create-user">Register</a></li>
-                    </>
-                )}
-                {token && userId && (
-                    <>
-                        {!isMobile && (
-
-                        ** desktop version:
-                            <li className="dropdown">
-                                <a href={`/user/${userId}`} className="profile-link">
-                                    My Profile
-                                </a>
-
-                                <ul className="dropdown-content">
-                                    <li onClick={closeMenu}>
-                                        <a href={`/edit/${userId}`}>Edit</a>
-                                    </li>
-
-                                    <li
-                                        onClick={(e) => {
-                                            e.preventDefault();
-                                            closeMenu();
-                                            handleLogout();
-                                        }}
-                                    >
-                                        <a href="#">Logout</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        )}
-
-                        {isMobile && (
-
-                            ** phone & tablet:
-                            <>
-                                <li onClick={closeMenu}>
-                                    <a href={`/user/${userId}`}>My Profile</a>
-                                </li>
-
-                                <li onClick={closeMenu}>
-                                    <a href={`/edit/${userId}`}>Edit Profile</a>
-                                </li>
-
-                                <li
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        closeMenu();
-                                        handleLogout();
-                                    }}
-                                >
-                                    <a href="#">Logout</a>
-                                </li>
-                            </>
-                        )}
-                    </>
-                )}
-               
-
-
-            </ul>
-        </nav>
-    );
-} */}
-
-

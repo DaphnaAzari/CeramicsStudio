@@ -31,45 +31,6 @@ const ProductDetails = () => {
     if (loading) return <p>Loading product…</p>;
     if (error) return <p>Error: {error}</p>;
 
-    //     return (
-    //         <div className="product-details-wrapper">
-    //             <div className="product-details-container">
-    //                 <div className="product-details-card">
-
-
-    //                     <h1 className="product-title">{product.productName}</h1>
-
-
-    //                     <div className="product-image-wrapper">
-    //                         <img
-    //                             src={product.image?.url}
-    //                             alt={product.productName}
-    //                             className="product-image"
-    //                         />
-    //                     </div>
-
-    //                     <div className="product-info-box">
-    //                         <p className="product-price"><b>Price:</b> £{product.price}</p>
-    //                         <p className="product-art-type"><b>Category:</b> {product.artType}</p>
-
-    //                         <div className="artist-section">
-    //                             <div className="artist-image-wrapper">
-    //                                 <img
-    //                                     src={product.userId?.image?.url}
-    //                                     alt={product.userId?.userName}
-    //                                     className="artist-profile-image"
-    //                                 />
-    //                             </div>
-
-    //                             <p className="artist-name"><b>Artist:</b> {product.userId?.userName}</p>
-    //                         </div>
-    //                     </div>
-
-    //                 </div>
-    //             </div>
-    //         </div>
-    //     );
-    // };
 
     return (
         <div className="product-details-wrapper">
@@ -86,15 +47,6 @@ const ProductDetails = () => {
                     <div className="product-info">
                         <p className="product-price"><strong>Price:</strong> £{product.price}</p>
                         <p className="product-type"><strong>Category:</strong> {product.artType}</p>
-
-                        {/* <div className="artist-box">
-                            <img
-                                className="artist-img"
-                                src={product.userId?.image?.url}
-                                alt={product.userId?.userName}
-                            />
-                            <p className="artist-name"><strong>Artist:</strong> {product.userId?.userName}</p>
-                        </div> */}
 
                         <div
                             className="artist-box"

@@ -70,7 +70,6 @@ export default function RegisterForm() {
                 instagram: formData.instagram || "",
                 website: formData.website || ""
             }));
-            // formData.append('socials', JSON.stringify({ instagram, website }));
 
             // formData.append('imageFile', file);
             if (formData.imageFile) {
@@ -95,53 +94,6 @@ export default function RegisterForm() {
             alert("Error creating user!");
         }
     };
-
-
-
-    //_____________________________________
-    // const submitForm = async (e) => {
-    //     e.preventDefault();
-    //     console.log('Submitted Formdata:', formData);
-
-    //     // frontend password check before sending to backend
-    //     if (!validatePassword(formData.password)) {
-    //         alert("Password must be at least 8 characters, include uppercase, lowercase, number, and special character.");
-    //         return; // stop form submission
-    //     }
-
-    //     try {
-    //         const data = new FormData();
-    //         data.append("firstName", formData.firstName);
-    //         data.append("lastName", formData.lastName);
-    //         data.append("userName", formData.userName);
-    //         data.append("email", formData.email);
-    //         data.append("password", formData.password);
-    //         data.append("socials[instagram]", formData.instagram || "");
-    //         data.append("socials[website]", formData.website || "");
-    //         // data.append("instagram", formData.instagram);
-    //         // data.append("website", formData.website);
-
-    //         if (formData.imageFile) {
-    //             data.append("imageFile", formData.imageFile); // append file properly
-    //         }
-
-    //         // const createdUser = await createUser(data); // send FormData
-    //         // console.log("Created user:", createdUser);
-    //         // navigate(`/user/${createdUser._id}`);
-    //         //     } catch (err) {
-    //         //         console.error("Error creating user:", err);
-    //         //         alert("Error creating user!");
-    //         //     }
-    //         // };
-
-
-    //         // Use axios directly to send form data
-    //         const res = await axios.post('http://localhost:3000/user', data, {
-    //             headers: { 'Content-Type': 'multipart/form-data' }
-    //         });
-
-    //         console.log("Created user:", res.data);
-    //         navigate(`/user/${res.data._id}`);
 
 
     return (
@@ -217,17 +169,6 @@ export default function RegisterForm() {
                     </div>
                 </div>
 
-                {/* row4  */}
-                {/* <div className="form-row">
-                    <div className="form-group">
-                        <label className="label">Website:</label>
-                        <input
-                            name="website"
-                            placeholder="Add your website"
-                            value={formData.website}
-                            onChange={handleChange} />
-                    </div>
-                </div> */}
 
                 <div className="form-row single">
                     <div className="form-group">
