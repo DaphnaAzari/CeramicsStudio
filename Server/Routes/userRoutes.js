@@ -2,10 +2,11 @@ const express = require('express');
 const router = express.Router();
 const methodOverride = require('method-override');
 const User = require('../Models/User');
-const { makeUser, getUserById, updateUser, loginUser, getAllUsers, deleteUser } = require('../controllers/userC');
+const { makeUser, getUserById, updateUser, loginUser, getAllUsers, deleteUser, forgotPassword, resetPassword } = require('../controllers/userC');
 const { upload } = require('../config/cloudinary');
 const { protect } = require('../middleware/authMiddleware');
 const { uploadAndHandleErrors } = require('../middleware/uploadMiddleware');
+
 // const multer = require('multer');
 // const path = require('path');
 
@@ -42,7 +43,8 @@ router.post('/', uploadAndHandleErrors, makeUser);
 
 
 router.post('/login', loginUser);
-
+router.post("/forgot-password", forgotPassword);
+router.put("/reset-password/:token", resetPassword);
 
 router.get('/:id', getUserById);
 

@@ -27,7 +27,9 @@ const userSchema = new Schema({
         validate: [validator.isEmail, 'Please provide a valid email address']
     },
     password: { type: String, required: true, select: false },
-    socials: { type: socialsSchema, default: () => ({}) }
+    socials: { type: socialsSchema, default: () => ({}) },
+    resetPasswordToken: { type: String },
+    resetPasswordExpire: { type: Date }
 }, { timestamps: true });
 
 // Hash password before saving (only if modified)
