@@ -71,7 +71,8 @@ const makeUser = async (req, res) => {
         const token = jwt.sign(
             { id: savedUser._id },
             process.env.JWT_SECRET,
-            { expiresIn: '7d' } // valid for 7 days
+            // valid for 7 days:
+            { expiresIn: '7d' }
         );
 
         console.log('Generated token for new user:', token);
@@ -91,7 +92,6 @@ const makeUser = async (req, res) => {
             token
         });
     } catch (err) {
-        // 🔧 Better error output and JSON response
         console.error('Error creating user:', err.message);
         console.error(err.stack);
 
@@ -210,17 +210,6 @@ const loginUser = async (req, res) => {
 
         // sends user info & token
 
-        // res.status(200).json({
-        //     _id: user._id,
-        //     firstName: user.firstName,
-        //     lastName: user.lastName,
-        //     userName: user.userName,
-        //     email: user.email,
-        //     image: user.image || null,
-        //     socials: user.socials || {},
-        //     token
-        // });
-
         res.status(200).json({
             user: {
                 _id: user._id,
@@ -283,18 +272,19 @@ const resetPassword = async (req, res) => {
     const { password } = req.body;
 
     try {
-        // Validate password exists and meets requirements
+        // validate password exists and meets requirements
         if (!password || password.length < 6) {
             return res.status(400).json({
                 message: "Password must be at least 6 characters long"
             });
         }
 
-        // Find user with valid, non-expired token
+        // find user with valid, non-expired token
         const user = await User.findOne({
             resetPasswordToken: token,
             resetPasswordExpire: { $gt: Date.now() }
-        }).select('+password'); // Need to select password field
+            // Need to select password field
+        }).select('+password');
 
         if (!user) {
             return res.status(400).json({
@@ -325,43 +315,6 @@ const resetPassword = async (req, res) => {
         });
     }
 };
-
-
-// const resetPassword = async (req, res) => {
-//     // token comes from URL
-//     const { token } = req.params;
-//     // new password from form
-//     const { password } = req.body;
-
-//     try {
-//         // find the user with this token that hasn't expired
-//         const user = await User.findOne({
-//             resetPasswordToken: token,
-//             // still valid
-//             resetPasswordExpire: { $gt: Date.now() }
-//         });
-
-//         if (!user) {
-//             return res.status(400).json({ message: "Invalid or expired token" });
-//         }
-
-//         // set new password
-//         user.password = password;
-
-//         // clear reset token and expiration
-//         user.resetPasswordToken = undefined;
-//         user.resetPasswordExpire = undefined;
-
-//         // save user (pre-save middleware hashes password)
-//         await user.save();
-
-//         res.status(200).json({ message: "Password reset successful!" });
-
-//     } catch (err) {
-//         console.error("Reset password error:", err);
-//         res.status(500).json({ message: "Server error resetting password" });
-//     }
-// };
 
 
 module.exports = { makeUser, getUserById, getAllUsers, updateUser, deleteUser, loginUser, forgotPassword, resetPassword };

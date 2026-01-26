@@ -11,7 +11,8 @@ const sendEmail = async (options) => {
         const transporter = nodemailer.createTransport({
             host: process.env.EMAIL_HOST,
             port: parseInt(process.env.EMAIL_PORT) || 587,
-            secure: process.env.EMAIL_PORT === '465', // true for port 465, false for other ports
+            // true for port 465, false for other ports
+            secure: process.env.EMAIL_PORT === '465',
             auth: {
                 user: process.env.EMAIL_USER,
                 pass: process.env.EMAIL_PASS,
@@ -64,44 +65,3 @@ const sendEmail = async (options) => {
 };
 
 module.exports = sendEmail;
-
-// const nodemailer = require('nodemailer');
-
-// const sendEmail = async (options) => {
-//     try {
-
-//         const transporter = nodemailer.createTransport({
-//             host: process.env.EMAIL_HOST,
-//             port: process.env.EMAIL_PORT,
-//             secure: false,
-//             auth: {
-//                 user: process.env.EMAIL_USER,
-//                 pass: process.env.EMAIL_PASS,
-//             },
-//         });
-
-//         // email options
-//         const mailOptions = {
-//             from: `"The Ceramics Studio Co-op" <${process.env.EMAIL_USER}>`,
-//             to: options.to,
-//             subject: options.subject,
-//             text: options.text,
-//         };
-
-//         // send email
-//         const info = await transporter.sendMail(mailOptions);
-
-
-//         const previewUrl = nodemailer.getTestMessageUrl(info);
-
-//         console.log(`Email sent! Message ID: ${info.messageId}`);
-//         if (previewUrl) {
-//             console.log(`Preview URL: ${previewUrl}`);
-//         }
-//     } catch (err) {
-//         console.error('Error sending email:', err);
-//         throw new Error('Email could not be sent');
-//     }
-// };
-
-// module.exports = sendEmail

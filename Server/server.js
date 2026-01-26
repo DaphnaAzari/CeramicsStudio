@@ -20,10 +20,7 @@ app.use((req, res, next) => {
     console.log(`${req.method} ${req.url}`);
     next();
 });
-//* only to be used in certain cases so this is changed
 
-// Middleware
-// app.use(express.json()); // parse JSON bodies
 
 // Enable CORS so frontend can call backend
 app.use(cors({ origin: 'http://localhost:5173', credentials: true }));
@@ -54,46 +51,3 @@ mongoose.connection.once('open', () => {
 
 
 
-///____________
-
-// const express = require('express');
-// require('dotenv').config();
-// const app = express();
-// console.log('Cloudinary env check:', process.env.CLOUDINARY_CLOUD_NAME ? 'Loaded' : 'Missing');
-
-
-// const workshopRoutes = require('./Routes/workshopRoutes');
-// const userRoutes = require('./Routes/userRoutes');
-// const mongoose = require('mongoose');
-// const connectDB = require('./config/dbConn')
-// const port = process.env.PORT || 3000;
-// const User = require('./Models/User');
-// const Workshop = require('./Models/Workshop');
-// const bodyParser = require('body-parser');
-// const cors = require('cors');
-
-
-// // connect to mongoDB
-// console.log("1")
-// connectDB();
-// console.log("2")
-
-// //Middleware:
-// // parse application/json
-// app.use(bodyParser.json())
-// // CORS middleware to handle cross-origin requests
-// app.use(cors())
-
-
-// //Routes:
-// app.use('/workshop', workshopRoutes);
-
-// app.use('/user', userRoutes);
-// //Start server after DB is ready:
-
-// mongoose.connection.once('open', () => {
-//     console.log('Connected to MongoDB');
-//     app.listen(3000, () => {
-//         console.log('serving app on port 3000!')
-//     });
-// })

@@ -16,7 +16,8 @@ console.log('🔍 Cloudinary Config Check:', {
 const storage = new CloudinaryStorage({
     cloudinary,
     params: {
-        folder: 'ceramics_users', // All user images go here
+        // All user images go here
+        folder: 'ceramics_users',
         allowed_formats: ['jpeg', 'png', 'jpg', 'webp'],
     },
 });
@@ -34,6 +35,6 @@ const upload = multer({
         }
     }
 });
-// const upload = multer({ storage });
+
 
 module.exports = { cloudinary, upload };

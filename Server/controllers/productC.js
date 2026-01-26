@@ -27,23 +27,7 @@ const createProduct = async (req, res) => {
         res.status(500).json({ message: "Product creation failed", details: err.message });
     }
 };
-//         const product = await Product.create({
-//             productName,
-//             price,
-//             artType,
-//             userId: req.user.id,
-//             image: req.file
-//                 ? { url: req.file.path, public_id: req.file.filename }
-//                 : { url: '', public_id: '' }
-//         });
 
-//         res.status(201).json(product);
-
-//     } catch (err) {
-//         console.error("Error creating product:", err);
-//         res.status(500).json({ message: "Product creation failed", details: err.message });
-//     }
-// };
 
 // GET ALL PRODUCTS (optional filter)
 const getProducts = async (req, res) => {
@@ -70,15 +54,7 @@ const getUserProducts = async (req, res) => {
 };
 
 
-// const getUserProducts = async (req, res) => {
-//     try {
-//         const products = await Product.find({ userId: req.params.userId });
-//         res.json(products);
-//     } catch (err) {
-//         console.error("Error fetching user's products:", err);
-//         res.status(500).json({ message: "Server error fetching user's products" });
-//     }
-// };
+
 
 // GET PRODUCT BY ID
 const getProductById = async (req, res) => {
@@ -96,8 +72,7 @@ const getProductById = async (req, res) => {
 };
 
 // UPDATE PRODUCT
-// "if (product.userId !== req.user.id)"" changed because when types differ 
-//comparing is fragile:
+
 
 const updateProduct = async (req, res) => {
     try {
@@ -149,8 +124,6 @@ const deleteProduct = async (req, res) => {
         const product = await Product.findById(req.params.id);
         if (!product) return res.status(404).json({ message: "Product not found" });
 
-        // if (product.userId !== req.user.id)
-        //     return res.status(403).json({ message: "Not authorized to delete this product" });
 
         if (!product.userId.equals(req.user._id)) {
             return res.status(403).json({ message: "Not authorized to delete this product" });

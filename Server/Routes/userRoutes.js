@@ -7,40 +7,9 @@ const { upload } = require('../config/cloudinary');
 const { protect } = require('../middleware/authMiddleware');
 const { uploadAndHandleErrors } = require('../middleware/uploadMiddleware');
 
-// const multer = require('multer');
-// const path = require('path');
-
-
 router.use(methodOverride('_method'));
 
 router.post('/', uploadAndHandleErrors, makeUser);
-
-
-// This was moved to an upload middleware
-// Call multer manually so we can capture its errors
-
-// router.post('/', (req, res) => {
-
-//     upload.single('imageFile')(req, res, async function (err) {
-//         if (err) {
-//             console.error('Multer/Cloudinary upload error:', err);
-//             return res
-//                 .status(500)
-//                 .json({ message: 'Upload failed', details: err.message || err.toString() });
-//         }
-
-//         try {
-//             console.log('Multer upload passed, continuing to makeUser');
-//             await makeUser(req, res);
-//         } catch (controllerError) {
-//             console.error(' Error inside makeUser:', controllerError);
-//             res
-//                 .status(500)
-//                 .json({ message: 'User creation failed', details: controllerError.message });
-//         }
-//     });
-// });
-
 
 router.post('/login', loginUser);
 router.post("/forgot-password", forgotPassword);
@@ -61,16 +30,11 @@ router.get('/debug-artists', async (req, res) => {
     }
 });
 
-//Updated edit that allows both image + form data to be updated:
+//updated edit that allows both image + form data to be updated:
 
 router.put('/:id', protect, upload.single('imageFile'), updateUser);
 
 router.delete('/:id', protect, deleteUser);
-
-
-
-
-
 
 
 module.exports = router;
